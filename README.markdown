@@ -1,4 +1,4 @@
-## Blitz
+# Blitz
 
 A simple presentation app that enforces a specific format: 
 
