@@ -14,6 +14,7 @@
 		79BFE53A0FF7E738000668B2 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BFE5390FF7E738000668B2 /* Sparkle.framework */; };
 		79BFE5450FF7E762000668B2 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BFE5390FF7E738000668B2 /* Sparkle.framework */; };
 		79BFE55A0FF7ECDD000668B2 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 79BFE5590FF7ECDD000668B2 /* dsa_pub.pem */; };
+		79BFE61A0FF81A2C000668B2 /* blitz.icns in Resources */ = {isa = PBXBuildFile; fileRef = 79BFE6190FF81A2C000668B2 /* blitz.icns */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */; settings = {ATTRIBUTES = (); }; };
@@ -52,6 +53,7 @@
 		79BB56AB0FF7386500D94BEB /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
 		79BFE5390FF7E738000668B2 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		79BFE5590FF7ECDD000668B2 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		79BFE6190FF81A2C000668B2 /* blitz.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = blitz.icns; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Blitz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blitz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				79BFE6190FF81A2C000668B2 /* blitz.icns */,
 				79BFE5590FF7ECDD000668B2 /* dsa_pub.pem */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
@@ -202,6 +205,7 @@
 				1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */,
 				1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */,
 				79BFE55A0FF7ECDD000668B2 /* dsa_pub.pem in Resources */,
+				79BFE61A0FF81A2C000668B2 /* blitz.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
