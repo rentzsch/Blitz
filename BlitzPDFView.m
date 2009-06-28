@@ -137,8 +137,6 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
             [dotGradient drawInBezierPath:outerSlideElapsedDot relativeCenterPosition:NSZeroPoint];
         } [[NSGraphicsContext currentContext] restoreGraphicsState];
     }
-    
-    [[NSString stringWithFormat:@"%d", self.secondsElapsed] drawInRect:innerCircleBounds withAttributes:nil];
 }
 
 - (IBAction)updateSecondsElapsed:(id)sender {
