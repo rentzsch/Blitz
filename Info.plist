@@ -55,5 +55,9 @@
 	<string>NSApplication</string>
 	<key>CFBundleShortVersionString</key>
 	<string>${PRODUCT_VERSION}</string>
+	<key>SUFeedURL</key>
+	<string>http://s3.amazonaws.com/rentzsch/blitz-appcast.xml</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
 </dict>
 </plist>

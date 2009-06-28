@@ -11,12 +11,28 @@
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
 		79BB568B0FF7374A00D94BEB /* BlitzPDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB56890FF7374A00D94BEB /* BlitzPDFView.m */; };
 		79BB56AC0FF7386500D94BEB /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BB56AB0FF7386500D94BEB /* Quartz.framework */; };
+		79BFE53A0FF7E738000668B2 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BFE5390FF7E738000668B2 /* Sparkle.framework */; };
+		79BFE5450FF7E762000668B2 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79BFE5390FF7E738000668B2 /* Sparkle.framework */; };
+		79BFE55A0FF7ECDD000668B2 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 79BFE5590FF7ECDD000668B2 /* dsa_pub.pem */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		79BFE5580FF7E76D000668B2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				79BFE5450FF7E762000668B2 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -34,6 +50,8 @@
 		79BB56890FF7374A00D94BEB /* BlitzPDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlitzPDFView.m; sourceTree = "<group>"; };
 		79BB568A0FF7374A00D94BEB /* BlitzPDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitzPDFView.h; sourceTree = "<group>"; };
 		79BB56AB0FF7386500D94BEB /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
+		79BFE5390FF7E738000668B2 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		79BFE5590FF7ECDD000668B2 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Blitz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blitz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -45,6 +63,7 @@
 			files = (
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				79BB56AC0FF7386500D94BEB /* Quartz.framework in Frameworks */,
+				79BFE53A0FF7E738000668B2 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +73,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				79BFE5390FF7E738000668B2 /* Sparkle.framework */,
 				79BB56AB0FF7386500D94BEB /* Quartz.framework */,
 				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
 			);
@@ -113,6 +133,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				79BFE5590FF7ECDD000668B2 /* dsa_pub.pem */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
@@ -141,6 +162,8 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
+				79BFE5580FF7E76D000668B2 /* CopyFiles */,
+				79BFE55F0FF806B6000668B2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -178,10 +201,28 @@
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */,
 				1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */,
+				79BFE55A0FF7ECDD000668B2 /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		79BFE55F0FF806B6000668B2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "PRODUCT_VERSION=`/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"`\nVERSIONED_NAME=\"$PRODUCT_NAME-$PRODUCT_VERSION\"\ncd \"$TARGET_BUILD_DIR\"\nrm *.zip\nzip -qr \"$VERSIONED_NAME.zip\" \"$FULL_PRODUCT_NAME\"\n\nSPARKLE_PRIVATE_KEY_FILE=\"$HOME/.ssh/sparkle_dsa_priv.pem\"\nif [ -f \"$SPARKLE_PRIVATE_KEY_FILE\" ]; then\n\tSPARKLE_DSA_SIG=`openssl dgst -sha1 -binary < \"$TARGET_BUILD_DIR/$VERSIONED_NAME.zip\" | openssl dgst -dss1 -sign \"$SPARKLE_PRIVATE_KEY_FILE\" | openssl enc -base64`\n\trm *.sparkle_dsa_sig\n\techo \"sparkle:dsaSignature=\\\"$SPARKLE_DSA_SIG\\\"\" > \"$TARGET_BUILD_DIR/$VERSIONED_NAME.sparkle_dsa_sig\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D15AC300486D014006FF6A4 /* Sources */ = {
@@ -237,6 +278,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -254,6 +299,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Blitz_Prefix.pch;
