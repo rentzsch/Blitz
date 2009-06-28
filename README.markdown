@@ -10,10 +10,6 @@ Requires Mac OS X 10.5/Intel (it's `x86_64`-only).
 
 ## TODO
 
-BUGS
-
-- Elapsed time meter is off-by-one.
-
 MUST
 
 - Icon.
@@ -31,6 +27,8 @@ SHOULD
 - Turn progress meter into "play" button upon document load.
 
 - Disable scroll wheel.
+
+- Modify progress meter from digital (update once/second) to analog (continuous, perhaps 24 fps).
 
 NICE
 

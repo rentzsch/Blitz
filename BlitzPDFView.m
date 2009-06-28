@@ -30,11 +30,6 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
 #define sixOclock		270.0f
 
 - (void)drawPagePost:(PDFPage*)page {
-#if 0
-        [[NSColor grayColor] set];
-        NSFrameRect([self bounds]);
-#endif
-    
     const CGFloat kSize = 80.0f;
     const CGFloat kOuterRingWidth = 8.0f;
     const CGFloat kPadding = 20.0f;
@@ -65,8 +60,19 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
         [outerSlideElapsedWedge moveToPoint:center];
         
         float slideSeconds = fmod(self.secondsElapsed, 15.0f);
-        degreesElapsed = (slideSeconds * 360.0f) / 14.0f;
-        if (300 == self.secondsElapsed) degreesElapsed = 360.0f;
+        if (slideSeconds == 0.0f) {
+            if (self.secondsElapsed == 0) {
+                degreesElapsed = 0;
+            } else {
+                degreesElapsed = 360;
+            }
+        } else {
+            degreesElapsed = (slideSeconds * 360.0f) / 15.0f;
+        }
+        
+        
+        NSLog(@"%f %f", slideSeconds, degreesElapsed);
+        //if (300 == self.secondsElapsed) degreesElapsed = 360.0f;
         
         [outerSlideElapsedWedge appendBezierPathWithArcWithCenter:center
                                           radius:bounds.size.width / 2.0f
@@ -131,6 +137,8 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
             [dotGradient drawInBezierPath:outerSlideElapsedDot relativeCenterPosition:NSZeroPoint];
         } [[NSGraphicsContext currentContext] restoreGraphicsState];
     }
+    
+    [[NSString stringWithFormat:@"%d", self.secondsElapsed] drawInRect:innerCircleBounds withAttributes:nil];
 }
 
 - (IBAction)updateSecondsElapsed:(id)sender {
