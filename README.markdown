@@ -6,6 +6,8 @@ A simple presentation app that enforces a specific format:
 * 15 seconds each
 * 5 minutes total
 
+To use, drop any PDF file onto its icon. Blitz assumes you'll have 20 slides at 1280x720.
+
 Requires Mac OS X 10.5/Intel (it's `x86_64`-only).
 
 ## TODO
