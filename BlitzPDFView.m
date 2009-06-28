@@ -70,10 +70,6 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
             degreesElapsed = (slideSeconds * 360.0f) / 15.0f;
         }
         
-        
-        NSLog(@"%f %f", slideSeconds, degreesElapsed);
-        //if (300 == self.secondsElapsed) degreesElapsed = 360.0f;
-        
         [outerSlideElapsedWedge appendBezierPathWithArcWithCenter:center
                                           radius:bounds.size.width / 2.0f
                                       startAngle:twelveOclock-degreesElapsed
