@@ -12,10 +12,6 @@ Requires Mac OS X 10.5/Intel (it's `x86_64`-only).
 
 MUST
 
-- Icon.
-
-- Sparkle.
-
 - Full-screen display.
 
 - Escape key to exit full-screen mode.
@@ -40,4 +36,6 @@ NICE
 
 ## Version History
 
-* **0.1** busy being born
+* **0.1** Sun 28 Jun 2009 [download](http://s3.amazonaws.com/rentzsch/Blitz-0.1.zip)
+
+	* Initial version
