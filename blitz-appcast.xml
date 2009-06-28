@@ -7,7 +7,7 @@
 		<description>Most recent changes with links to updates</description>
 		<item>
 			<title>version 0.1</title>
-			<pubDate>Sun, 28 Jun 2009 13:46:54 -0500</pubDate>
+			<pubDate>Sun, 28 Jun 2009 16:40:44 -0500</pubDate>
 			<description>
 <![CDATA[
 <h3>0.1</h3>
@@ -16,7 +16,7 @@
 <li>Initial release.</li>
 </ul>
 ]]>			</description>
-			<enclosure sparkle:version="0.1" url="http://s3.amazonaws.com/rentzsch/Blitz-0.1.zip" sparkle:dsaSignature="MCwCFEdp0AzFS8KiAVpKyjiYawd8g91iAhR0UGpqY2hEq+xihXj83eT9U2G63Q==" type="application/zip"/>
+			<enclosure sparkle:version="0.1" url="http://s3.amazonaws.com/rentzsch/Blitz-0.1.zip" sparkle:dsaSignature="MC0CFH/AMApIwF+Nd+UAFVCNwJaWDDIDAhUAhyCBJCGesUSkwVim5KZVeFg5CpY=" type="application/zip"/>
 		</item>
 	</channel>
 </rss>
