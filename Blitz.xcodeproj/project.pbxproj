@@ -223,7 +223,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "PRODUCT_VERSION=`/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"`\nVERSIONED_NAME=\"$PRODUCT_NAME-$PRODUCT_VERSION\"\ncd \"$TARGET_BUILD_DIR\"\nrm *.zip\nzip -qr \"$VERSIONED_NAME.zip\" \"$FULL_PRODUCT_NAME\"\n\nSPARKLE_PRIVATE_KEY_FILE=\"$HOME/.ssh/sparkle_dsa_priv.pem\"\nif [ -f \"$SPARKLE_PRIVATE_KEY_FILE\" ]; then\n\tSPARKLE_DSA_SIG=`openssl dgst -sha1 -binary < \"$TARGET_BUILD_DIR/$VERSIONED_NAME.zip\" | openssl dgst -dss1 -sign \"$SPARKLE_PRIVATE_KEY_FILE\" | openssl enc -base64`\n\trm *.sparkle_dsa_sig\n\techo \"sparkle:dsaSignature=\\\"$SPARKLE_DSA_SIG\\\"\" > \"$TARGET_BUILD_DIR/$VERSIONED_NAME.sparkle_dsa_sig\"\nfi\n";
+			shellScript = "if [ $BUILD_STYLE != \"Release\" ]; then\n\texit 0\nfi\n\nPRODUCT_VERSION=`/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"`\nVERSIONED_NAME=\"$PRODUCT_NAME-$PRODUCT_VERSION\"\ncd \"$TARGET_BUILD_DIR\"\nrm *.zip *.sparkle_dsa_sig\nzip -qr \"$VERSIONED_NAME.zip\" \"$FULL_PRODUCT_NAME\"\n\nSPARKLE_PRIVATE_KEY_FILE=\"$HOME/.ssh/sparkle_dsa_priv.pem\"\nif [ -f \"$SPARKLE_PRIVATE_KEY_FILE\" ]; then\n\tSPARKLE_DSA_SIG=`openssl dgst -sha1 -binary < \"$TARGET_BUILD_DIR/$VERSIONED_NAME.zip\" | openssl dgst -dss1 -sign \"$SPARKLE_PRIVATE_KEY_FILE\" | openssl enc -base64`\n\techo \"sparkle:dsaSignature=\\\"$SPARKLE_DSA_SIG\\\"\" > \"$TARGET_BUILD_DIR/$VERSIONED_NAME.sparkle_dsa_sig\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
