@@ -6,35 +6,11 @@ A simple presentation app that enforces a specific format:
 * 15 seconds each
 * 5 minutes total
 
-To use, drop any PDF file onto its icon. Blitz assumes you'll have 20 slides at 1280x720.
+To use, drop a PDF file onto its icon. Blitz assumes you'll have 20 slides at 1280x720. It will start the presentation immediately, automatically advancing to the next slide every 15 seconds.
 
 Requires Mac OS X 10.5/Intel (it's `x86_64`-only).
 
-## TODO
-
-MUST
-
-- Full-screen display.
-
-- Escape key to exit full-screen mode.
-
-SHOULD
-
-- Better end-of-talk display.
-
-- Turn progress meter into "play" button upon document load.
-
-- Disable scroll wheel.
-
-- Modify progress meter from digital (update once/second) to analog (continuous, perhaps 24 fps).
-
-NICE
-
-- Utilize QuickLook so we can consume `.key` files directly (asking QL to give us the PDF representation transparently).
-
-- Don't hard-code display to 1280x720 (16:9).
-
-- Allow choice of main presentation display.
+Please [report bugs and request features](http://rentzsch.lighthouseapp.com/projects/32860-blitz/tickets/new) on the [Lighthouse project site](http://rentzsch.lighthouseapp.com/projects/32860-blitz/tickets?q=all). Want to chip in? [Here's what needs to be done](http://rentzsch.lighthouseapp.com/projects/32860-blitz/tickets/bins/29884).
 
 ## Version History
 
