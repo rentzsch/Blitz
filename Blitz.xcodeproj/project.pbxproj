@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* MyDocument.xib */; };
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		376586FD1009A33F00B9BC9B /* MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 376586FC1009A33F00B9BC9B /* MyApplication.m */; };
 		79BB568B0FF7374A00D94BEB /* BlitzPDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB56890FF7374A00D94BEB /* BlitzPDFView.m */; };
 		79BB56AC0FF7386500D94BEB /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BB56AB0FF7386500D94BEB /* Quartz.framework */; };
 		79BFE53A0FF7E738000668B2 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BFE5390FF7E738000668B2 /* Sparkle.framework */; };
@@ -48,6 +49,8 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Blitz_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blitz_Prefix.pch; sourceTree = "<group>"; };
+		376586FB1009A33F00B9BC9B /* MyApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApplication.h; sourceTree = "<group>"; };
+		376586FC1009A33F00B9BC9B /* MyApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyApplication.m; sourceTree = "<group>"; };
 		79BB56890FF7374A00D94BEB /* BlitzPDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlitzPDFView.m; sourceTree = "<group>"; };
 		79BB568A0FF7374A00D94BEB /* BlitzPDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitzPDFView.h; sourceTree = "<group>"; };
 		79BB56AB0FF7386500D94BEB /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
@@ -119,6 +122,8 @@
 				2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */,
 				79BB568A0FF7374A00D94BEB /* BlitzPDFView.h */,
 				79BB56890FF7374A00D94BEB /* BlitzPDFView.m */,
+				376586FB1009A33F00B9BC9B /* MyApplication.h */,
+				376586FC1009A33F00B9BC9B /* MyApplication.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				79BB568B0FF7374A00D94BEB /* BlitzPDFView.m in Sources */,
+				376586FD1009A33F00B9BC9B /* MyApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

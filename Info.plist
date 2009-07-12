@@ -54,7 +54,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>MyApplication</string>
 	<key>SUFeedURL</key>
 	<string>http://s3.amazonaws.com/rentzsch/blitz-appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
