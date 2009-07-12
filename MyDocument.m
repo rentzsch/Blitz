@@ -4,10 +4,22 @@
 @interface MyDocument ()
 @property (retain, nonatomic) PDFDocument *pdfDocument;
 @property (retain, nonatomic) NSTimer *timer;
+@property (nonatomic) BOOL isInFullScreenMode;
 @end
 
 @implementation MyDocument
-@synthesize pdfDocument, pdfView, timer;
+@synthesize pdfView, pdfDocument, timer, isInFullScreenMode;
+
+- (void)toggleFullScreenMode {
+	if (self.isInFullScreenMode) {
+		[self.pdfView exitFullScreenModeWithOptions: nil];
+		self.isInFullScreenMode = NO;
+	}
+	else {
+		NSWindow *window = [[[self windowControllers] objectAtIndex:0 ] window];
+		self.isInFullScreenMode = [self.pdfView enterFullScreenMode: window.screen withOptions: nil];
+	}
+}
 
 - (void)windowControllerDidLoadNib:(NSWindowController*)controller_ {
     [super windowControllerDidLoadNib:controller_];
@@ -23,6 +35,8 @@
                                             selector:@selector(updateElapsedTimer:)
                                             userInfo:nil
                                              repeats:YES] retain];
+		self.isInFullScreenMode = NO;
+		[self toggleFullScreenMode];
 }
 
 - (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {

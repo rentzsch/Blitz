@@ -8,6 +8,7 @@
 	IBOutlet BlitzPDFView *pdfView;
 	@private PDFDocument *pdfDocument;
 	@private NSTimer *timer;
+	@private BOOL isInFullScreenMode;
 }
 
 @property (retain, nonatomic) IBOutlet BlitzPDFView *pdfView;
