@@ -1,6 +1,16 @@
 #import "BlitzPDFView.h"
 
-@implementation BlitzPDFView
+@interface CounterView : NSView
+{
+	uint16_t secondsElapsed;
+}
+
+@property uint16_t secondsElapsed;
+
+@end
+
+
+@implementation CounterView
 @synthesize secondsElapsed;
 
 //  Following function stolen from http://cocoa.karelia.com/Foundation_Categories/NSColor__Instantiat.m
@@ -29,14 +39,12 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
 #define nineOclock		180.0f
 #define sixOclock		270.0f
 
-- (void)drawPagePost:(PDFPage*)page {
-    const CGFloat kSize = 80.0f;
+- (void)drawRect:(NSRect)rect {
     const CGFloat kOuterRingWidth = 8.0f;
-    const CGFloat kPadding = 20.0f;
     
     NSColor *outerSlideElapsedWedgeColor = colorFromHexRGB(@"2c8fff");
     
-    NSRect bounds = NSMakeRect([self bounds].size.width - kPadding - kSize, kPadding, kSize, kSize);
+    NSRect bounds = [self bounds];
     NSPoint center = NSMakePoint(NSMidX(bounds), NSMidY(bounds));
     
     {
@@ -107,7 +115,7 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
     
     {
         const CGFloat dotSize = 10.0f;
-        NSRect dotBounds = NSMakeRect(-dotSize/2, (kSize/2)-dotSize+1, dotSize, dotSize);
+        NSRect dotBounds = NSMakeRect(-dotSize/2, (bounds.size.width/2)-dotSize+1, dotSize, dotSize);
         NSRect glowBounds = NSInsetRect(dotBounds, -5.0f, -5.0f);
         
         NSBezierPath *outerSlideElapsedDotGlow = [NSBezierPath bezierPathWithOvalInRect:glowBounds];
@@ -133,6 +141,41 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
             [dotGradient drawInBezierPath:outerSlideElapsedDot relativeCenterPosition:NSZeroPoint];
         } [[NSGraphicsContext currentContext] restoreGraphicsState];
     }
+}
+
+@end
+
+@implementation BlitzPDFView
+@dynamic secondsElapsed;
+
+- (void)drawPagePost:(PDFPage*)page {
+    const CGFloat kSize = 80.0f;
+    const CGFloat kPadding = 20.0f;
+
+		if (counterView == nil)
+		{
+        counterView = [[CounterView alloc] initWithFrame:NSMakeRect(0, 0, kSize, kSize)];
+		    [self addSubview: counterView];
+		}
+    
+    NSRect frame = NSMakeRect([self bounds].size.width - kPadding - kSize, kPadding, kSize, kSize);
+		counterView.frame = frame;
+		[counterView setNeedsDisplay: YES];
+}
+
+- (void)dealloc
+{
+    [counterView release];
+    [super dealloc];
+}
+
+- (uint16_t) secondsElapsed {
+    return secondsElapsed;
+}
+
+- (void)setSecondsElapsed:(uint16_t)secs {
+    secondsElapsed = secs;
+		counterView.secondsElapsed = secs;
 }
 
 - (IBAction)updateSecondsElapsed:(id)sender {
