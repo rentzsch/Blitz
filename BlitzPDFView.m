@@ -163,9 +163,8 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
 		[counterView setNeedsDisplay: YES];
 }
 
-- (void)dealloc
-{
-    [counterView release];
+- (void)dealloc {
+    [self atLastPage];
     [super dealloc];
 }
 
@@ -175,7 +174,12 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
 
 - (void)setSecondsElapsed:(uint16_t)secs {
     secondsElapsed = secs;
-		counterView.secondsElapsed = secs;
+    counterView.secondsElapsed = secs;
+}
+
+- (void)atLastPage {
+    [[counterView animator] removeFromSuperview];
+    counterView = nil;
 }
 
 - (IBAction)updateSecondsElapsed:(id)sender {

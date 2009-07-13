@@ -52,7 +52,13 @@
 
 - (void)updateElapsedTimer:(NSTimer*)timer_ {
     if (self.pdfView.secondsElapsed != 0 && (self.pdfView.secondsElapsed % 15 == 0)) {
-        [self.pdfView goToNextPage:nil];
+        if ([self.pdfView canGoToNextPage]) {
+            [self.pdfView goToNextPage:nil];
+        }
+        else {
+            [self.pdfView atLastPage];
+            [timer_ invalidate];
+        }
     }
     self.pdfView.secondsElapsed += 1;
     [self.pdfView setNeedsDisplay:YES];

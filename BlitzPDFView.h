@@ -11,6 +11,7 @@
 
 @property uint16_t secondsElapsed;
 
+- (void)atLastPage;
 - (IBAction)updateSecondsElapsed:(id)sender;
 
 @end
