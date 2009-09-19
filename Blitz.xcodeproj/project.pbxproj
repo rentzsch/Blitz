@@ -332,7 +332,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				PRODUCT_VERSION = 0.1;
+				PRODUCT_VERSION = 0.2;
 				SDKROOT = macosx10.6;
 			};
 			name = Debug;
@@ -348,7 +348,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				PRODUCT_VERSION = 0.1;
+				PRODUCT_VERSION = 0.2;
 				SDKROOT = macosx10.6;
 			};
 			name = Release;
