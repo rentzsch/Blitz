@@ -1,6 +1,12 @@
 #import "MyDocument.h"
 #import "BlitzPDFView.h"
 
+@interface NSObject (UndocumentedQuickLookUI)
+- (id)_previewView; // -[QLPreviewPanelController _previewView]
+- (id)displayBundle; // -[QLDisplayBundle displayBundle];
+- (PDFDocument*)pdfDocument; // -[QLDisplayBundle pdfDocument]
+@end
+
 @interface MyDocument ()
 @property (retain, nonatomic) PDFDocument *pdfDocument;
 @property (retain, nonatomic) NSTimer *timer;
@@ -16,27 +22,30 @@
 		self.isInFullScreenMode = NO;
 	}
 	else {
-		NSWindow *window = [[[self windowControllers] objectAtIndex:0] window];
+        // TODO
+		//NSWindow *window = [[[self windowControllers] objectAtIndex:0] window];
 		//self.isInFullScreenMode = [self.pdfView enterFullScreenMode: window.screen withOptions: nil];
 	}
 }
 
-- (void)windowControllerDidLoadNib:(NSWindowController*)controller_ {
-    [super windowControllerDidLoadNib:controller_];
-    
-    if (!self.pdfDocument) {
-        self.pdfDocument = [[PDFDocument alloc] init];
-    }
+- (void)initPDFView {
     [self.pdfView setDocument:self.pdfDocument];
     
     self.pdfView.secondsElapsed = 0;
     self.timer = [[NSTimer scheduledTimerWithTimeInterval:1.0
-                                              target:self
-                                            selector:@selector(updateElapsedTimer:)
-                                            userInfo:nil
-                                             repeats:YES] retain];
-		self.isInFullScreenMode = NO;
-		[self toggleFullScreenMode];
+                                                   target:self
+                                                 selector:@selector(updateElapsedTimer:)
+                                                 userInfo:nil
+                                                  repeats:YES] retain];
+    self.isInFullScreenMode = NO;
+    [self toggleFullScreenMode];
+}
+
+- (void)windowControllerDidLoadNib:(NSWindowController*)controller_ {
+    [super windowControllerDidLoadNib:controller_];
+    if (self.pdfDocument) {
+        [self initPDFView];
+    }
 }
 
 - (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
@@ -45,9 +54,46 @@
     return NO;
 }
 
+- (void)pollPDFPageCount:(NSTimer*)timer_ {
+    id myQLPreviewPanelController = [[QLPreviewPanel sharedPreviewPanel] windowController];
+    //NSLog(@"myQLPreviewPanelController: %@", myQLPreviewPanelController);
+    
+    id myQLPreviewView = [myQLPreviewPanelController _previewView];
+    //NSLog(@"myQLPreviewView: %@", myQLPreviewView);
+    
+    id myQLDisplayBundle = [myQLPreviewView displayBundle];
+    //NSLog(@"myQLDisplayBundle: %@", myQLDisplayBundle);
+    
+    PDFDocument *pdfDisplayBundlePDFDocument = [myQLDisplayBundle pdfDocument];
+    //NSLog(@"pdfDisplayBundlePDFDocument: %@", pdfDisplayBundlePDFDocument);
+    
+    NSLog(@"pageCount: %d", [pdfDisplayBundlePDFDocument pageCount]);
+    if ([pdfDisplayBundlePDFDocument pageCount] >= 20) {
+        [timer_ invalidate];
+        self.pdfDocument = pdfDisplayBundlePDFDocument;
+        [self initPDFView];
+        [[QLPreviewPanel sharedPreviewPanel] orderOut:nil];
+    }
+}
+
 - (BOOL)readFromURL:(NSURL *)initWithURL ofType:(NSString *)typeName error:(NSError **)outError {
-    self.pdfDocument = [[PDFDocument alloc] initWithURL:initWithURL];
-    return self.pdfDocument ? YES : NO;
+    if ([typeName isEqualToString:@"PDFDocument"]) {
+        self.pdfDocument = [[PDFDocument alloc] initWithURL:initWithURL];
+        return self.pdfDocument ? YES : NO;
+    } else if ([typeName isEqualToString:@"KeynoteDocument"]) {
+        [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:nil];
+        // Poor man's window-hiding since we can't immediately orderOut the panel (crashes):
+        [[QLPreviewPanel sharedPreviewPanel] setFrameTopLeftPoint:NSMakePoint(-5000, -5000)];
+        
+        [NSTimer scheduledTimerWithTimeInterval:1
+                                         target:self
+                                       selector:@selector(pollPDFPageCount:)
+                                       userInfo:nil
+                                        repeats:YES];
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 - (void)updateElapsedTimer:(NSTimer*)timer_ {
@@ -62,6 +108,32 @@
     }
     self.pdfView.secondsElapsed += 1;
     [self.pdfView setNeedsDisplay:YES];
+}
+
+//--
+
+- (BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel {
+    return YES;
+}
+
+- (void)beginPreviewPanelControl:(QLPreviewPanel *)panel {
+    previewPanel = [panel retain];
+    panel.delegate = self;
+    panel.dataSource = self;
+}
+
+- (void)endPreviewPanelControl:(QLPreviewPanel *)panel {
+    [previewPanel release];
+    previewPanel = nil;
+}
+
+- (NSInteger)numberOfPreviewItemsInPreviewPanel:(QLPreviewPanel*)panel {
+    return 1;
+}
+
+- (id <QLPreviewItem>)previewPanel:(QLPreviewPanel *)panel previewItemAtIndex:(NSInteger)index {
+    return [self fileURL];
+    //return [NSURL fileURLWithPath:@"/Users/wolf/code/github/Blitz/blitz-example.pdf"];//[selectedDownloads objectAtIndex:index];
 }
 
 //--

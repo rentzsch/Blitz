@@ -9,6 +9,22 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>key</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>KeynoteDocument</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSDocumentClass</key>
+			<string>MyDocument</string>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>XML</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>pdf</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -18,7 +34,7 @@
 				<string>application/pdf</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>DocumentType</string>
+			<string>PDFDocument</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>????</string>
