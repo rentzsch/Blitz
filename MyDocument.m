@@ -16,8 +16,8 @@
 		self.isInFullScreenMode = NO;
 	}
 	else {
-		NSWindow *window = [[[self windowControllers] objectAtIndex:0 ] window];
-		self.isInFullScreenMode = [self.pdfView enterFullScreenMode: window.screen withOptions: nil];
+		NSWindow *window = [[[self windowControllers] objectAtIndex:0] window];
+		//self.isInFullScreenMode = [self.pdfView enterFullScreenMode: window.screen withOptions: nil];
 	}
 }
 

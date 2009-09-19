@@ -1,14 +1,10 @@
 #import "BlitzPDFView.h"
 
-@interface CounterView : NSView
-{
+@interface CounterView : NSView {
 	uint16_t secondsElapsed;
 }
-
 @property uint16_t secondsElapsed;
-
 @end
-
 
 @implementation CounterView
 @synthesize secondsElapsed;
@@ -46,6 +42,8 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
     
     NSRect bounds = [self bounds];
     NSPoint center = NSMakePoint(NSMidX(bounds), NSMidY(bounds));
+    
+    bounds = NSInsetRect(bounds, 6.0, 6.0);
     
     {
         NSBezierPath *outerSlideRingBackground = [NSBezierPath bezierPathWithOvalInRect:bounds];
@@ -152,15 +150,14 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
     const CGFloat kSize = 80.0f;
     const CGFloat kPadding = 20.0f;
 
-		if (counterView == nil)
-		{
+    if (counterView == nil) {
         counterView = [[CounterView alloc] initWithFrame:NSMakeRect(0, 0, kSize, kSize)];
-		    [self addSubview: counterView];
-		}
+        [self addSubview: counterView];
+    }
     
     NSRect frame = NSMakeRect([self bounds].size.width - kPadding - kSize, kPadding, kSize, kSize);
-		counterView.frame = frame;
-		[counterView setNeedsDisplay: YES];
+    counterView.frame = frame;
+    [counterView setNeedsDisplay: YES];
 }
 
 - (void)dealloc {

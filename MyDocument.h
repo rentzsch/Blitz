@@ -3,8 +3,7 @@
 
 @class BlitzPDFView;
 
-@interface MyDocument : NSDocument 
-{
+@interface MyDocument : NSDocument {
 	IBOutlet BlitzPDFView *pdfView;
 	@private PDFDocument *pdfDocument;
 	@private NSTimer *timer;
