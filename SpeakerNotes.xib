@@ -12,19 +12,22 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string>com.apple.WebKitIBPlugin</string>
+				<string>com.apple.pdfkit.ibplugin</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>732</string>
 				<string>732</string>
+				<string>1.1.0</string>
 			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="2"/>
+			<integer value="6"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<string>com.apple.pdfkit.ibplugin</string>
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string>com.apple.WebKitIBPlugin</string>
 		</object>
@@ -51,7 +54,7 @@
 			<object class="NSWindowTemplate" id="1005">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 240}, {480, 270}}</string>
+				<string key="NSWindowRect">{{821, 452}, {1024, 740}}</string>
 				<int key="NSWTFlags">544735232</int>
 				<string key="NSWindowTitle">Speaker Notes</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -62,73 +65,127 @@
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="WebView" id="398699125">
+						<object class="NSSplitView" id="901506032">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">274</int>
-							<object class="NSMutableSet" key="NSDragTypes">
+							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSArray" key="set.sortedObjects">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>Apple HTML pasteboard type</string>
-									<string>Apple PDF pasteboard type</string>
-									<string>Apple PICT pasteboard type</string>
-									<string>Apple URL pasteboard type</string>
-									<string>Apple Web Archive pasteboard type</string>
-									<string>NSColor pasteboard type</string>
-									<string>NSFilenamesPboardType</string>
-									<string>NSStringPboardType</string>
-									<string>NeXT RTFD pasteboard type</string>
-									<string>NeXT Rich Text Format v1.0 pasteboard type</string>
-									<string>NeXT TIFF v4.0 pasteboard type</string>
-									<string>WebURLsWithTitlesPboardType</string>
-									<string>public.png</string>
-									<string>public.url</string>
-									<string>public.url-name</string>
+								<object class="NSCustomView" id="120059249">
+									<reference key="NSNextResponder" ref="901506032"/>
+									<int key="NSvFlags">274</int>
+									<object class="NSMutableArray" key="NSSubviews">
+										<bool key="EncodedWithXMLCoder">YES</bool>
+										<object class="PDFView" id="57970415">
+											<reference key="NSNextResponder" ref="120059249"/>
+											<int key="NSvFlags">12</int>
+											<object class="NSMutableSet" key="NSDragTypes">
+												<bool key="EncodedWithXMLCoder">YES</bool>
+												<object class="NSArray" key="set.sortedObjects">
+													<bool key="EncodedWithXMLCoder">YES</bool>
+													<string>NSFilenamesPboardType</string>
+												</object>
+											</object>
+											<string key="NSFrame">{{453, 90}, {300, 200}}</string>
+											<reference key="NSSuperview" ref="120059249"/>
+											<int key="DisplayMode">0</int>
+											<bool key="PageBreaks">NO</bool>
+											<float key="ScaleFactor">0.25252524018287659</float>
+											<bool key="AutoScale">YES</bool>
+										</object>
+										<object class="PDFView" id="775359069">
+											<reference key="NSNextResponder" ref="120059249"/>
+											<int key="NSvFlags">12</int>
+											<object class="NSMutableSet" key="NSDragTypes">
+												<bool key="EncodedWithXMLCoder">YES</bool>
+												<object class="NSArray" key="set.sortedObjects">
+													<bool key="EncodedWithXMLCoder">YES</bool>
+													<string>NSFilenamesPboardType</string>
+												</object>
+											</object>
+											<string key="NSFrame">{{88, 90}, {300, 200}}</string>
+											<reference key="NSSuperview" ref="120059249"/>
+											<int key="DisplayMode">0</int>
+											<bool key="PageBreaks">NO</bool>
+											<float key="ScaleFactor">0.25252524018287659</float>
+											<bool key="AutoScale">YES</bool>
+										</object>
+									</object>
+									<string key="NSFrameSize">{1024, 375}</string>
+									<reference key="NSSuperview" ref="901506032"/>
+									<string key="NSClassName">SpeakerSlidesView</string>
+								</object>
+								<object class="WebView" id="655178903">
+									<reference key="NSNextResponder" ref="901506032"/>
+									<int key="NSvFlags">274</int>
+									<object class="NSMutableSet" key="NSDragTypes">
+										<bool key="EncodedWithXMLCoder">YES</bool>
+										<object class="NSArray" key="set.sortedObjects">
+											<bool key="EncodedWithXMLCoder">YES</bool>
+											<string>Apple HTML pasteboard type</string>
+											<string>Apple PDF pasteboard type</string>
+											<string>Apple PICT pasteboard type</string>
+											<string>Apple URL pasteboard type</string>
+											<string>Apple Web Archive pasteboard type</string>
+											<string>NSColor pasteboard type</string>
+											<string>NSFilenamesPboardType</string>
+											<string>NSStringPboardType</string>
+											<string>NeXT RTFD pasteboard type</string>
+											<string>NeXT Rich Text Format v1.0 pasteboard type</string>
+											<string>NeXT TIFF v4.0 pasteboard type</string>
+											<string>WebURLsWithTitlesPboardType</string>
+											<string>public.png</string>
+											<string>public.url</string>
+											<string>public.url-name</string>
+										</object>
+									</object>
+									<string key="NSFrame">{{0, 376}, {1024, 366}}</string>
+									<reference key="NSSuperview" ref="901506032"/>
+									<reference key="NSNextKeyView"/>
+									<string key="FrameName"/>
+									<string key="GroupName"/>
+									<object class="WebPreferences" key="Preferences">
+										<string key="Identifier">SpeakerNotes</string>
+										<object class="NSMutableDictionary" key="Values">
+											<bool key="EncodedWithXMLCoder">YES</bool>
+											<object class="NSArray" key="dict.sortedKeys">
+												<bool key="EncodedWithXMLCoder">YES</bool>
+												<string>SpeakerNotesWebKitAllowAnimatedImageLoopingPreferenceKey</string>
+												<string>SpeakerNotesWebKitAllowAnimatedImagesPreferenceKey</string>
+												<string>SpeakerNotesWebKitDefaultFontSize</string>
+												<string>SpeakerNotesWebKitDisplayImagesKey</string>
+												<string>SpeakerNotesWebKitJavaEnabled</string>
+												<string>SpeakerNotesWebKitJavaScriptCanOpenWindowsAutomatically</string>
+												<string>SpeakerNotesWebKitJavaScriptEnabled</string>
+												<string>SpeakerNotesWebKitPluginsEnabled</string>
+												<string>SpeakerNotesWebKitStandardFont</string>
+											</object>
+											<object class="NSMutableArray" key="dict.values">
+												<bool key="EncodedWithXMLCoder">YES</bool>
+												<boolean value="NO"/>
+												<boolean value="NO"/>
+												<integer value="24"/>
+												<boolean value="NO"/>
+												<boolean value="NO"/>
+												<boolean value="NO"/>
+												<boolean value="NO"/>
+												<boolean value="NO"/>
+												<string>Helvetica</string>
+											</object>
+										</object>
+									</object>
+									<bool key="UseBackForwardList">NO</bool>
+									<bool key="AllowsUndo">YES</bool>
 								</object>
 							</object>
-							<string key="NSFrameSize">{480, 270}</string>
+							<string key="NSFrameSize">{1024, 742}</string>
 							<reference key="NSSuperview" ref="1006"/>
-							<reference key="NSNextKeyView"/>
-							<string key="FrameName"/>
-							<string key="GroupName"/>
-							<object class="WebPreferences" key="Preferences">
-								<string key="Identifier">SpeakerNotes</string>
-								<object class="NSMutableDictionary" key="Values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<object class="NSArray" key="dict.sortedKeys">
-										<bool key="EncodedWithXMLCoder">YES</bool>
-										<string>SpeakerNotesWebKitAllowAnimatedImageLoopingPreferenceKey</string>
-										<string>SpeakerNotesWebKitAllowAnimatedImagesPreferenceKey</string>
-										<string>SpeakerNotesWebKitDefaultFontSize</string>
-										<string>SpeakerNotesWebKitDisplayImagesKey</string>
-										<string>SpeakerNotesWebKitJavaEnabled</string>
-										<string>SpeakerNotesWebKitJavaScriptCanOpenWindowsAutomatically</string>
-										<string>SpeakerNotesWebKitJavaScriptEnabled</string>
-										<string>SpeakerNotesWebKitPluginsEnabled</string>
-										<string>SpeakerNotesWebKitStandardFont</string>
-									</object>
-									<object class="NSMutableArray" key="dict.values">
-										<bool key="EncodedWithXMLCoder">YES</bool>
-										<boolean value="NO"/>
-										<boolean value="NO"/>
-										<integer value="24"/>
-										<boolean value="NO"/>
-										<boolean value="NO"/>
-										<boolean value="NO"/>
-										<boolean value="NO"/>
-										<boolean value="NO"/>
-										<string>Helvetica</string>
-									</object>
-								</object>
-							</object>
-							<bool key="UseBackForwardList">NO</bool>
-							<bool key="AllowsUndo">YES</bool>
+							<int key="NSDividerStyle">2</int>
 						</object>
 					</object>
-					<string key="NSFrameSize">{480, 270}</string>
+					<string key="NSFrameSize">{1024, 740}</string>
 					<reference key="NSSuperview"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
+				<string key="NSScreenRect">{{0, 0}, {2560, 1578}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 			</object>
 		</object>
@@ -147,9 +204,33 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">webView</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="398699125"/>
+						<reference key="destination" ref="655178903"/>
 					</object>
 					<int key="connectionID">5</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">slidesView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="120059249"/>
+					</object>
+					<int key="connectionID">8</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">currentSlideView</string>
+						<reference key="source" ref="120059249"/>
+						<reference key="destination" ref="775359069"/>
+					</object>
+					<int key="connectionID">11</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextSlideView</string>
+						<reference key="source" ref="120059249"/>
+						<reference key="destination" ref="57970415"/>
+					</object>
+					<int key="connectionID">12</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -193,14 +274,44 @@
 						<reference key="object" ref="1006"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="398699125"/>
+							<reference ref="901506032"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
-						<reference key="object" ref="398699125"/>
+						<int key="objectID">7</int>
+						<reference key="object" ref="901506032"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="120059249"/>
+							<reference ref="655178903"/>
+						</object>
 						<reference key="parent" ref="1006"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">6</int>
+						<reference key="object" ref="120059249"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="775359069"/>
+							<reference ref="57970415"/>
+						</object>
+						<reference key="parent" ref="901506032"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">4</int>
+						<reference key="object" ref="655178903"/>
+						<reference key="parent" ref="901506032"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">9</int>
+						<reference key="object" ref="775359069"/>
+						<reference key="parent" ref="120059249"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">10</int>
+						<reference key="object" ref="57970415"/>
+						<reference key="parent" ref="120059249"/>
 					</object>
 				</object>
 			</object>
@@ -217,22 +328,32 @@
 					<string>1.NSWindowTemplate.visibleAtLaunch</string>
 					<string>1.WindowOrigin</string>
 					<string>1.editorWindowContentRectSynchronizationRect</string>
+					<string>10.CustomClassName</string>
+					<string>10.IBPluginDependency</string>
 					<string>2.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
+					<string>6.IBPluginDependency</string>
+					<string>9.CustomClassName</string>
+					<string>9.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{939, 830}, {480, 270}}</string>
+					<string>{{624, 356}, {1024, 740}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{939, 830}, {480, 270}}</string>
+					<string>{{624, 356}, {1024, 740}}</string>
 					<integer value="1"/>
 					<string>{196, 240}</string>
 					<string>{{357, 418}, {480, 270}}</string>
+					<string>SpeakerSlidePDFView</string>
+					<string>com.apple.pdfkit.ibplugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.WebKitIBPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>SpeakerSlidePDFView</string>
+					<string>com.apple.pdfkit.ibplugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -251,7 +372,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">5</int>
+			<int key="maxID">12</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -260,13 +381,48 @@
 					<string key="className">SpeakerNotesWindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">webView</string>
-						<string key="NS.object.0">WebView</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>slidesView</string>
+							<string>webView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>SpeakerSlidesView</string>
+							<string>WebView</string>
+						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">SpeakerNotesWindowController.h</string>
 					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SpeakerSlidePDFView</string>
+					<string key="superclassName">PDFView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="74441650">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">SpeakerSlidesView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SpeakerSlidesView</string>
+					<string key="superclassName">NSView</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>currentSlideView</string>
+							<string>nextSlideView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>PDFView</string>
+							<string>PDFView</string>
+						</object>
+					</object>
+					<reference key="sourceIdentifier" ref="74441650"/>
 				</object>
 			</object>
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.2+">
@@ -274,21 +430,21 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">NSApplication</string>
 					<string key="superclassName">NSResponder</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="6447594">
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="918036418">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSApplication.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSApplication</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="269353350">
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="701029461">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSApplicationScripting.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSApplication</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="584089570">
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="311177947">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSColorPanel.h</string>
 					</object>
@@ -317,7 +473,7 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">NSMenu</string>
 					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="318681919">
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="5241529">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSMenu.h</string>
 					</object>
@@ -331,15 +487,15 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
-					<reference key="sourceIdentifier" ref="6447594"/>
+					<reference key="sourceIdentifier" ref="918036418"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
-					<reference key="sourceIdentifier" ref="269353350"/>
+					<reference key="sourceIdentifier" ref="701029461"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
-					<reference key="sourceIdentifier" ref="584089570"/>
+					<reference key="sourceIdentifier" ref="311177947"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
@@ -385,7 +541,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
-					<reference key="sourceIdentifier" ref="318681919"/>
+					<reference key="sourceIdentifier" ref="5241529"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
@@ -431,7 +587,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="526753382">
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="74655712">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSView.h</string>
 					</object>
@@ -599,7 +755,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="981246362">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">PDFKit.framework/Headers/PDFView.h</string>
 					</object>
@@ -662,6 +818,14 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">NSSplitView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSSplitView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">NSView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
@@ -685,7 +849,7 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">NSView</string>
 					<string key="superclassName">NSResponder</string>
-					<reference key="sourceIdentifier" ref="526753382"/>
+					<reference key="sourceIdentifier" ref="74655712"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSWindow</string>
@@ -720,6 +884,40 @@
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSWindowController.h</string>
 					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PDFView</string>
+					<string key="superclassName">NSView</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>goBack:</string>
+							<string>goForward:</string>
+							<string>goToFirstPage:</string>
+							<string>goToLastPage:</string>
+							<string>goToNextPage:</string>
+							<string>goToPreviousPage:</string>
+							<string>selectAll:</string>
+							<string>takeBackgroundColorFrom:</string>
+							<string>zoomIn:</string>
+							<string>zoomOut:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<reference key="sourceIdentifier" ref="981246362"/>
 				</object>
 			</object>
 		</object>

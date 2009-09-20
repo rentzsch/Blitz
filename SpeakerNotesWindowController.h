@@ -8,7 +8,9 @@
 
 #import <AppKit/NSWindowController.h>
 
+@class PDFDocument;
 @class WebView;
+@class SpeakerSlidesView;
 
 @interface SpeakerNotesWindowController : NSWindowController
 {
@@ -16,11 +18,13 @@
     WebView *_webView;
     NSData *_htmlData;
     NSUInteger _pageIndex;
+    SpeakerSlidesView *_slidesView;
 }
 
 - initWithHTMLData:(NSData *)htmlData;
 
 @property(retain) IBOutlet WebView *webView;
+@property(retain) IBOutlet SpeakerSlidesView *slidesView;
 @property(readwrite) NSUInteger pageIndex;
 
 @end

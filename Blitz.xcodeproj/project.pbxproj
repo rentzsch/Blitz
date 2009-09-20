@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* MyDocument.xib */; };
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		345BF6AC10668503004BCEE3 /* SpeakerSlidesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 345BF6AB10668503004BCEE3 /* SpeakerSlidesView.m */; };
 		34E6611E1065E938001B6FE9 /* presenter-notes.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 34E6611D1065E938001B6FE9 /* presenter-notes.xsl */; };
 		34E6612E1065EB97001B6FE9 /* SpeakerNotes.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E6612D1065EB97001B6FE9 /* SpeakerNotes.xib */; };
 		34E6614E1065EBAE001B6FE9 /* SpeakerNotesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E6614D1065EBAE001B6FE9 /* SpeakerNotesWindowController.m */; };
@@ -52,6 +53,8 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Blitz_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blitz_Prefix.pch; sourceTree = "<group>"; };
+		345BF6AA10668503004BCEE3 /* SpeakerSlidesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerSlidesView.h; sourceTree = "<group>"; };
+		345BF6AB10668503004BCEE3 /* SpeakerSlidesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerSlidesView.m; sourceTree = "<group>"; };
 		34E6611D1065E938001B6FE9 /* presenter-notes.xsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "presenter-notes.xsl"; sourceTree = "<group>"; };
 		34E6612D1065EB97001B6FE9 /* SpeakerNotes.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpeakerNotes.xib; sourceTree = "<group>"; };
 		34E6614C1065EBAE001B6FE9 /* SpeakerNotesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerNotesWindowController.h; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				376586FC1009A33F00B9BC9B /* MyApplication.m */,
 				34E6614C1065EBAE001B6FE9 /* SpeakerNotesWindowController.h */,
 				34E6614D1065EBAE001B6FE9 /* SpeakerNotesWindowController.m */,
+				345BF6AA10668503004BCEE3 /* SpeakerSlidesView.h */,
+				345BF6AB10668503004BCEE3 /* SpeakerSlidesView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 				79BB568B0FF7374A00D94BEB /* BlitzPDFView.m in Sources */,
 				376586FD1009A33F00B9BC9B /* MyApplication.m in Sources */,
 				34E6614E1065EBAE001B6FE9 /* SpeakerNotesWindowController.m in Sources */,
+				345BF6AC10668503004BCEE3 /* SpeakerSlidesView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +320,10 @@
 				GCC_PREFIX_HEADER = Blitz_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_CFLAGS = (
+					"$(value)",
+					"-DNS_BUILD_32_LIKE_64",
+				);
 				PRODUCT_NAME = Blitz;
 			};
 			name = Debug;
@@ -332,6 +342,10 @@
 				GCC_PREFIX_HEADER = Blitz_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_CFLAGS = (
+					"$(value)",
+					"-DNS_BUILD_32_LIKE_64",
+				);
 				PRODUCT_NAME = Blitz;
 			};
 			name = Release;
