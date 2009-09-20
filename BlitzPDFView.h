@@ -8,8 +8,9 @@
 	CounterView *counterView;
 }
 @property uint16_t secondsElapsed;
+@property(assign) NSUInteger pageIndex;
+@property(assign) BOOL running;
 
-- (void)atLastPage;
 - (IBAction)updateSecondsElapsed:(id)sender;
 
 @end

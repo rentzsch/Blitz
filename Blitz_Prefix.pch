@@ -5,5 +5,5 @@
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
 
-    #define SECONDS_PER_SLIDE (15)
+    #define SECONDS_PER_SLIDE (2)
 #endif

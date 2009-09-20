@@ -1,20 +1,18 @@
 #import <Cocoa/Cocoa.h>
 #import <Quartz/Quartz.h>
 
-@class BlitzPDFView;
-
-@interface MyDocument : NSDocument <QLPreviewPanelDataSource, QLPreviewPanelDelegate> {
-	IBOutlet BlitzPDFView *pdfView;
+@interface MyDocument : NSDocument {
 	@private PDFDocument *pdfDocument;
 	@private NSTimer *timer;
     @private BOOL isInFullScreenMode;
     
-    QLPreviewPanel *previewPanel;
     
+    NSUInteger secondsElapsed;
     NSUInteger pageIndex;
+    BOOL running;
 }
 
-@property (retain, nonatomic) IBOutlet BlitzPDFView *pdfView;
 @property (readwrite) NSUInteger pageIndex;
+@property (readonly) BOOL running;
 
 @end
