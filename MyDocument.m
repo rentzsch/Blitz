@@ -96,35 +96,6 @@
                                        userInfo:nil
                                         repeats:YES];
         
-        // Extract the notes from the Keynote file, converting to HTML. Duct tape and bailing wire.
-        {
-            NSString *xslPath = [[NSBundle mainBundle] pathForResource:@"presenter-notes" ofType:@"xsl"];
-            NSString *command = [NSString stringWithFormat:@"/usr/bin/unzip -p '%s' index.apxl | xsltproc '%s' -",
-                                 [[NSFileManager defaultManager] fileSystemRepresentationWithPath:[initWithURL path]],
-                                 [[NSFileManager defaultManager] fileSystemRepresentationWithPath:xslPath]];
-            NSTask *task = [[[NSTask alloc] init] autorelease];
-            
-            NSPipe *pipe = [NSPipe pipe];
-            [task setLaunchPath:@"/bin/sh"];
-            [task setArguments:[NSArray arrayWithObjects:@"-c", command, nil]];
-            [task setStandardInput:[NSFileHandle fileHandleWithNullDevice]];
-            [task setStandardOutput:[pipe fileHandleForWriting]];
-
-            [task launch];
-            
-            [[pipe fileHandleForWriting] closeFile]; // have to close our copy of the writing endpoint or we won't get EOF when reading.
-            NSData *htmlData = [[pipe fileHandleForReading] readDataToEndOfFile];
-            
-            [task waitUntilExit];
-            
-            //NSLog(@"html = %@", [[[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding] autorelease]);
-                  
-            SpeakerNotesWindowController *speakerNotes = [[SpeakerNotesWindowController alloc] initWithHTMLData:htmlData];
-            [self addWindowController:speakerNotes];
-            [speakerNotes showWindow:nil];
-            [speakerNotes release];
-        }
-        
         return YES;
     } else {
         return NO;
@@ -175,6 +146,45 @@
 }
 
 //--
+
+- (void)makeWindowControllers;
+{
+    [super makeWindowControllers];
+    
+    
+    // Extract the notes from the Keynote file, converting to HTML. Duct tape and bailing wire.
+    {
+        NSURL *fileURL = [self fileURL];
+        
+        NSString *xslPath = [[NSBundle mainBundle] pathForResource:@"presenter-notes" ofType:@"xsl"];
+        NSString *command = [NSString stringWithFormat:@"/usr/bin/unzip -p '%s' index.apxl | xsltproc '%s' -",
+                             [[NSFileManager defaultManager] fileSystemRepresentationWithPath:[fileURL path]],
+                             [[NSFileManager defaultManager] fileSystemRepresentationWithPath:xslPath]];
+        NSTask *task = [[[NSTask alloc] init] autorelease];
+        
+        NSPipe *pipe = [NSPipe pipe];
+        [task setLaunchPath:@"/bin/sh"];
+        [task setArguments:[NSArray arrayWithObjects:@"-c", command, nil]];
+        [task setStandardInput:[NSFileHandle fileHandleWithNullDevice]];
+        [task setStandardOutput:[pipe fileHandleForWriting]];
+        
+        [task launch];
+        
+        [[pipe fileHandleForWriting] closeFile]; // have to close our copy of the writing endpoint or we won't get EOF when reading.
+        NSData *htmlData = [[pipe fileHandleForReading] readDataToEndOfFile];
+        
+        [task waitUntilExit];
+        
+        //NSLog(@"html = %@", [[[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding] autorelease]);
+        
+        SpeakerNotesWindowController *speakerNotes = [[SpeakerNotesWindowController alloc] initWithHTMLData:htmlData];
+        [self addWindowController:speakerNotes];
+        
+        // Don't -showWindow: since that'll make us key; the main window needs to stay key so that the QuickLook hack will work.
+        [[speakerNotes window] orderBack:nil];
+        [speakerNotes release];
+    }
+}
 
 - (NSString *)windowNibName {
     return @"MyDocument";
