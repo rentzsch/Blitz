@@ -1,5 +1,6 @@
 #import "MyDocument.h"
 #import "BlitzPDFView.h"
+#import "SpeakerNotesWindowController.h"
 
 @interface NSObject (UndocumentedQuickLookUI)
 - (id)_previewView; // -[QLPreviewPanelController _previewView]
@@ -65,6 +66,9 @@
     //NSLog(@"myQLDisplayBundle: %@", myQLDisplayBundle);
     
     PDFDocument *pdfDisplayBundlePDFDocument = [myQLDisplayBundle pdfDocument];
+    
+    [pdfDisplayBundlePDFDocument writeToFile:@"/tmp/key.pdf"];
+    
     //NSLog(@"pdfDisplayBundlePDFDocument: %@", pdfDisplayBundlePDFDocument);
     
     NSLog(@"pageCount: %d", [pdfDisplayBundlePDFDocument pageCount]);
@@ -90,6 +94,33 @@
                                        selector:@selector(pollPDFPageCount:)
                                        userInfo:nil
                                         repeats:YES];
+        
+        // Extract the notes from the Keynote file, converting to HTML. Duct tape and bailing wire.
+        {
+            NSString *xslPath = [[NSBundle mainBundle] pathForResource:@"presenter-notes" ofType:@"xsl"];
+            NSString *command = [NSString stringWithFormat:@"/usr/bin/unzip -p '%s' index.apxl | xsltproc '%s' -",
+                                 [[NSFileManager defaultManager] fileSystemRepresentationWithPath:[initWithURL path]],
+                                 [[NSFileManager defaultManager] fileSystemRepresentationWithPath:xslPath]];
+            NSTask *task = [[[NSTask alloc] init] autorelease];
+            
+            NSPipe *pipe = [NSPipe pipe];
+            [task setLaunchPath:@"/bin/sh"];
+            [task setArguments:[NSArray arrayWithObjects:@"-c", command, nil]];
+            [task setStandardInput:[NSFileHandle fileHandleWithNullDevice]];
+            [task setStandardOutput:[pipe fileHandleForWriting]];
+
+            [task launch];
+            
+            [[pipe fileHandleForWriting] closeFile]; // have to close our copy of the writing endpoint or we won't get EOF when reading.
+            NSData *htmlData = [[pipe fileHandleForReading] readDataToEndOfFile];
+            NSLog(@"htmlData = %@", htmlData);
+            
+            SpeakerNotesWindowController *speakerNotes = [[SpeakerNotesWindowController alloc] initWithHTMLData:htmlData];
+            [self addWindowController:speakerNotes];
+            [speakerNotes showWindow:nil];
+            [speakerNotes release];
+        }
+        
         return YES;
     } else {
         return NO;

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* MyDocument.xib */; };
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
+		34E6611E1065E938001B6FE9 /* presenter-notes.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 34E6611D1065E938001B6FE9 /* presenter-notes.xsl */; };
+		34E6612E1065EB97001B6FE9 /* SpeakerNotes.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E6612D1065EB97001B6FE9 /* SpeakerNotes.xib */; };
+		34E6614E1065EBAE001B6FE9 /* SpeakerNotesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E6614D1065EBAE001B6FE9 /* SpeakerNotesWindowController.m */; };
 		376586FD1009A33F00B9BC9B /* MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 376586FC1009A33F00B9BC9B /* MyApplication.m */; };
 		79BB568B0FF7374A00D94BEB /* BlitzPDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB56890FF7374A00D94BEB /* BlitzPDFView.m */; };
 		79BB56AC0FF7386500D94BEB /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BB56AB0FF7386500D94BEB /* Quartz.framework */; };
@@ -49,6 +52,10 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Blitz_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blitz_Prefix.pch; sourceTree = "<group>"; };
+		34E6611D1065E938001B6FE9 /* presenter-notes.xsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "presenter-notes.xsl"; sourceTree = "<group>"; };
+		34E6612D1065EB97001B6FE9 /* SpeakerNotes.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpeakerNotes.xib; sourceTree = "<group>"; };
+		34E6614C1065EBAE001B6FE9 /* SpeakerNotesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerNotesWindowController.h; sourceTree = "<group>"; };
+		34E6614D1065EBAE001B6FE9 /* SpeakerNotesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerNotesWindowController.m; sourceTree = "<group>"; };
 		376586FB1009A33F00B9BC9B /* MyApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApplication.h; sourceTree = "<group>"; };
 		376586FC1009A33F00B9BC9B /* MyApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyApplication.m; sourceTree = "<group>"; };
 		79BB56890FF7374A00D94BEB /* BlitzPDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlitzPDFView.m; sourceTree = "<group>"; };
@@ -124,6 +131,8 @@
 				79BB56890FF7374A00D94BEB /* BlitzPDFView.m */,
 				376586FB1009A33F00B9BC9B /* MyApplication.h */,
 				376586FC1009A33F00B9BC9B /* MyApplication.m */,
+				34E6614C1065EBAE001B6FE9 /* SpeakerNotesWindowController.h */,
+				34E6614D1065EBAE001B6FE9 /* SpeakerNotesWindowController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -140,6 +149,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				34E6611D1065E938001B6FE9 /* presenter-notes.xsl */,
 				79BFE6190FF81A2C000668B2 /* blitz.icns */,
 				79BFE5590FF7ECDD000668B2 /* dsa_pub.pem */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
@@ -147,6 +157,7 @@
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				1DDD58280DA1D0D100B32029 /* MyDocument.xib */,
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
+				34E6612D1065EB97001B6FE9 /* SpeakerNotes.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -211,6 +222,8 @@
 				1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */,
 				79BFE55A0FF7ECDD000668B2 /* dsa_pub.pem in Resources */,
 				79BFE61A0FF81A2C000668B2 /* blitz.icns in Resources */,
+				34E6611E1065E938001B6FE9 /* presenter-notes.xsl in Resources */,
+				34E6612E1065EB97001B6FE9 /* SpeakerNotes.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +255,7 @@
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				79BB568B0FF7374A00D94BEB /* BlitzPDFView.m in Sources */,
 				376586FD1009A33F00B9BC9B /* MyApplication.m in Sources */,
+				34E6614E1065EBAE001B6FE9 /* SpeakerNotesWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
