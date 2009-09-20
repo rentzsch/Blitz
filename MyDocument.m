@@ -16,6 +16,7 @@
 
 @implementation MyDocument
 @synthesize pdfView, pdfDocument, timer, isInFullScreenMode;
+@synthesize pageIndex;
 
 - (void)toggleFullScreenMode {
 	if (self.isInFullScreenMode) {
@@ -113,7 +114,8 @@
             
             [[pipe fileHandleForWriting] closeFile]; // have to close our copy of the writing endpoint or we won't get EOF when reading.
             NSData *htmlData = [[pipe fileHandleForReading] readDataToEndOfFile];
-            NSLog(@"htmlData = %@", htmlData);
+            
+            [task waitUntilExit];
             
             SpeakerNotesWindowController *speakerNotes = [[SpeakerNotesWindowController alloc] initWithHTMLData:htmlData];
             [self addWindowController:speakerNotes];
@@ -128,9 +130,12 @@
 }
 
 - (void)updateElapsedTimer:(NSTimer*)timer_ {
-    if (self.pdfView.secondsElapsed != 0 && (self.pdfView.secondsElapsed % 15 == 0)) {
+    if (self.pdfView.secondsElapsed != 0 && (self.pdfView.secondsElapsed % SECONDS_PER_SLIDE == 0)) {
         if ([self.pdfView canGoToNextPage]) {
             [self.pdfView goToNextPage:nil];
+            
+            // Triggers page change in associated speaker notes window controller
+            self.pageIndex = [[self.pdfView document] indexForPage:self.pdfView.currentPage];
         }
         else {
             [self.pdfView atLastPage];

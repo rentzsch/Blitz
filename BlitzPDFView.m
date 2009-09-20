@@ -65,7 +65,7 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
         NSBezierPath *outerSlideElapsedWedge = [NSBezierPath bezierPath];
         [outerSlideElapsedWedge moveToPoint:center];
         
-        float slideSeconds = fmod(self.secondsElapsed, 15.0f);
+        float slideSeconds = fmod(self.secondsElapsed, SECONDS_PER_SLIDE);
         if (slideSeconds == 0.0f) {
             if (self.secondsElapsed == 0) {
                 degreesElapsed = 0;
@@ -73,7 +73,7 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
                 degreesElapsed = 360;
             }
         } else {
-            degreesElapsed = (slideSeconds * 360.0f) / 15.0f;
+            degreesElapsed = (slideSeconds * 360.0f) / SECONDS_PER_SLIDE;
         }
         
         [outerSlideElapsedWedge appendBezierPathWithArcWithCenter:center

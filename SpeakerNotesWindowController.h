@@ -15,10 +15,12 @@
 @private
     WebView *_webView;
     NSData *_htmlData;
+    NSUInteger _pageIndex;
 }
 
 - initWithHTMLData:(NSData *)htmlData;
 
 @property(retain) IBOutlet WebView *webView;
+@property(readwrite) NSUInteger pageIndex;
 
 @end

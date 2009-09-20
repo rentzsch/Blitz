@@ -38,4 +38,25 @@
     [[_webView mainFrame] loadData:_htmlData MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:nil];
 }
 
+- (void)setDocument:(NSDocument *)document;
+{
+    [super setDocument:document];
+    
+    if (document) {
+        [self bind:@"pageIndex" toObject:document withKeyPath:@"pageIndex" options:nil];
+    } else {
+        [self unbind:@"pageIndex"];
+    }
+}
+
+#pragma mark -
+#pragma mark KVC
+
+@synthesize pageIndex = _pageIndex;
+- (void)setPageIndex:(NSUInteger)pageIndex;
+{
+    _pageIndex = pageIndex;
+    //NSLog(@"speaker pageIndex = %lu", pageIndex);
+}
+
 @end

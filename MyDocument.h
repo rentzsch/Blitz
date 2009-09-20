@@ -10,8 +10,11 @@
     @private BOOL isInFullScreenMode;
     
     QLPreviewPanel *previewPanel;
+    
+    NSUInteger pageIndex;
 }
 
 @property (retain, nonatomic) IBOutlet BlitzPDFView *pdfView;
+@property (readwrite) NSUInteger pageIndex;
 
 @end
