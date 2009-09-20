@@ -17,6 +17,7 @@
     if (!(self = [super initWithWindowNibName:@"SpeakerNotes"]))
         return nil;
     
+    _pageIndex = (NSUInteger)-1;
     _htmlData = [htmlData copy];
     return self;
 }
@@ -35,7 +36,9 @@
 
 - (void)windowDidLoad;
 {
-    [[_webView mainFrame] loadData:_htmlData MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:nil];
+    [super windowDidLoad];
+    
+    self.pageIndex = 0; // set the first media style and load the results
 }
 
 - (void)setDocument:(NSDocument *)document;
@@ -57,6 +60,11 @@
 {
     _pageIndex = pageIndex;
     //NSLog(@"speaker pageIndex = %lu", pageIndex);
+    
+    // Horrifying but easy!
+    NSString *mediaStyle = [NSString stringWithFormat:@"mBGSlide%lu", _pageIndex];
+    [_webView setMediaStyle:mediaStyle];
+    [[_webView mainFrame] loadData:_htmlData MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:nil];
 }
 
 @end

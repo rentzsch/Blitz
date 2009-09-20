@@ -117,6 +117,8 @@
             
             [task waitUntilExit];
             
+            //NSLog(@"html = %@", [[[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding] autorelease]);
+                  
             SpeakerNotesWindowController *speakerNotes = [[SpeakerNotesWindowController alloc] initWithHTMLData:htmlData];
             [self addWindowController:speakerNotes];
             [speakerNotes showWindow:nil];
