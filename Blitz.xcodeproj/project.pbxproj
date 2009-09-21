@@ -325,6 +325,7 @@
 					"-DNS_BUILD_32_LIKE_64",
 				);
 				PRODUCT_NAME = Blitz;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -347,6 +348,7 @@
 					"-DNS_BUILD_32_LIKE_64",
 				);
 				PRODUCT_NAME = Blitz;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};

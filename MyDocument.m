@@ -56,6 +56,7 @@
     return NO;
 }
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_5
 - (void)pollPDFPageCount:(NSTimer*)timer_ {
     id myQLPreviewPanelController = [[QLPreviewPanel sharedPreviewPanel] windowController];
     //NSLog(@"myQLPreviewPanelController: %@", myQLPreviewPanelController);
@@ -80,12 +81,15 @@
         [[QLPreviewPanel sharedPreviewPanel] orderOut:nil];
     }
 }
+#endif
 
 - (BOOL)readFromURL:(NSURL *)initWithURL ofType:(NSString *)typeName error:(NSError **)outError {
+#if MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_5
     if ([typeName isEqualToString:@"PDFDocument"]) {
         self.pdfDocument = [[PDFDocument alloc] initWithURL:initWithURL];
         return self.pdfDocument ? YES : NO;
-    } else if ([typeName isEqualToString:@"KeynoteDocument"]) {
+    }
+    else if ([typeName isEqualToString:@"KeynoteDocument"]) {
         [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:nil];
         // Poor man's window-hiding since we can't immediately orderOut the panel (crashes):
         [[QLPreviewPanel sharedPreviewPanel] setFrameTopLeftPoint:NSMakePoint(-5000, -5000)];
@@ -97,9 +101,14 @@
                                         repeats:YES];
         
         return YES;
-    } else {
+    } 
+    else {
         return NO;
     }
+#else
+    self.pdfDocument = [[PDFDocument alloc] initWithURL:initWithURL];
+    return self.pdfDocument ? YES : NO;
+#endif
 }
 
 - (void)updateElapsedTimer:(NSTimer*)timer_ {
@@ -121,6 +130,7 @@
 
 //--
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_5
 - (BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel {
     return YES;
 }
@@ -144,6 +154,7 @@
     return [self fileURL];
     //return [NSURL fileURLWithPath:@"/Users/wolf/code/github/Blitz/blitz-example.pdf"];//[selectedDownloads objectAtIndex:index];
 }
+#endif
 
 //--
 
