@@ -15,4 +15,6 @@
 @property (readwrite) NSUInteger pageIndex;
 @property (readonly) BOOL running;
 
+- (IBAction)start:(id)sender;
+
 @end

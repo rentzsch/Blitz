@@ -67,13 +67,6 @@
 }
 
 - (void)initPDFView {
-    self.running = YES;
-    self.secondsElapsed = 0.0;
-    self.timer = [[NSTimer scheduledTimerWithTimeInterval:1.0
-                                                   target:self
-                                                 selector:@selector(updateElapsedTimer:)
-                                                 userInfo:nil
-                                                  repeats:YES] retain];
     self.isInFullScreenMode = NO;
     [self toggleFullScreenMode];
 }
@@ -191,6 +184,17 @@
     [self.timer invalidate];
     self.timer = nil;
     [super dealloc];
+}
+
+- (IBAction)start:(id)sender;
+{
+    self.running = YES;
+    self.secondsElapsed = 0.0;
+    self.timer = [[NSTimer scheduledTimerWithTimeInterval:1.0
+                                                   target:self
+                                                 selector:@selector(updateElapsedTimer:)
+                                                 userInfo:nil
+                                                  repeats:YES] retain];
 }
 
 @end
