@@ -1,6 +1,8 @@
 #import "MyDocument.h"
+
 #import "SlidesWindowController.h"
 #import "SpeakerNotesWindowController.h"
+#import "BlitzPDFView.h"
 
 @interface NSObject (UndocumentedQuickLookUI)
 - (id)_previewView; // -[QLPreviewPanelController _previewView]
@@ -21,17 +23,47 @@
 @synthesize pageIndex;
 
 - (void)toggleFullScreenMode {
-#if 0
-	if (self.isInFullScreenMode) {
-		[self.pdfView exitFullScreenModeWithOptions: nil];
-		self.isInFullScreenMode = NO;
-	}
-	else {
-        // TODO
-		//NSWindow *window = [[[self windowControllers] objectAtIndex:0] window];
-		//self.isInFullScreenMode = [self.pdfView enterFullScreenMode: window.screen withOptions: nil];
-	}
-#endif
+    SlidesWindowController *slides = [self.windowControllers objectAtIndex:0];
+    SpeakerNotesWindowController *notes = [self.windowControllers objectAtIndex:1];
+
+    NSView *slidesView = slides.pdfView;
+    NSView *notesView = notes.window.contentView;
+
+    if (self.isInFullScreenMode) {
+        [slidesView exitFullScreenModeWithOptions:nil];
+        [notesView exitFullScreenModeWithOptions:nil];
+        self.isInFullScreenMode = NO;
+    } else {
+        // Notes are on the MacBook Pro main screen at 1920x1200, slides are on the projector at 1280x720.
+        // For now, assuming that we don't need to change display resolutions and that these will be the only two displays and that the main screen will be the one for the notes.
+        NSScreen *notesScreen = [NSScreen mainScreen];
+        NSScreen *slidesScreen = nil;
+        for (NSScreen *screen in [NSScreen screens]) {
+            if (screen != notesScreen) {
+                slidesScreen = screen;
+                break;
+            }
+        }
+
+        if (!notesScreen || !slidesScreen) {
+            NSInteger rc = NSRunAlertPanel(@"Missing a screen", @"Unable to find both a note and slide screen", @"Cancel", @"Run Slides", nil);
+            if (rc == NSAlertDefaultReturn)
+                return;
+            slidesScreen = [NSScreen mainScreen];
+            notesScreen = nil;
+        }
+        
+        if (notesScreen) {
+            NSLog(@"notes %@ on %@ %@", notes, notesScreen, NSStringFromRect([notesScreen frame]));
+            [notesView enterFullScreenMode:notesScreen withOptions:nil];
+        }
+        NSLog(@"slides %@ on %@ %@", slides, slidesScreen, NSStringFromRect([slidesScreen frame]));
+        [slidesView enterFullScreenMode:slidesScreen withOptions:nil];
+        
+        [NSCursor setHiddenUntilMouseMoves:YES];
+        
+        self.isInFullScreenMode = YES;
+    }
 }
 
 - (void)initPDFView {
