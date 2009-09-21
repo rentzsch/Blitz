@@ -17,6 +17,13 @@
 
 @synthesize pdfView;
 
+- (void)windowDidLoad;
+{
+    [super windowDidLoad];
+    
+    [self.pdfView setBackgroundColor:[NSColor blackColor]];
+}
+
 - (void)setDocument:(NSDocument *)document;
 {
     [super setDocument:document];
