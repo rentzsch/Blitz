@@ -27,4 +27,6 @@
 @property(retain) IBOutlet SpeakerSlidesView *slidesView;
 @property(readwrite) NSUInteger pageIndex;
 
+- (void)changeFont:(id)sender;
+
 @end

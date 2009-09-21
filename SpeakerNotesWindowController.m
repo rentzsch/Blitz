@@ -75,4 +75,12 @@
     [[_webView mainFrame] loadData:_htmlData MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:nil];
 }
 
+#pragma mark -
+#pragma mark Actions
+
+- (void)changeFont:(id)sender;
+{
+    [_webView setTextSizeMultiplier:[sender floatValue]];
+}
+
 @end
