@@ -19,6 +19,26 @@
 	-->
 	<xsl:output method="xml" indent="yes" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
+	<xsl:template name="string-replace-all">
+		<xsl:param name="text"/>
+		<xsl:param name="replace"/>
+		<xsl:param name="by"/>
+		<xsl:choose>
+			<xsl:when test="contains($text,$replace)">
+				<xsl:value-of select="substring-before($text,$replace)"/>
+				<xsl:value-of select="$by"/>
+				<xsl:call-template name="string-replace-all">
+					<xsl:with-param name="text" select="substring-after($text,$replace)"/>
+					<xsl:with-param name="replace" select="$replace"/>
+					<xsl:with-param name="by" select="$by"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$text"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
 	<xsl:template match="key:presentation">
 		<html xml:lang="en-US" lang="en-US">
 			<head>
@@ -68,7 +88,13 @@
 			<body>
 				<xsl:for-each select="key:slide-list/key:slide">
 					<div class="slide">
-						<xsl:attribute name="id"><xsl:value-of select="str:replace(@sfa:ID, '-', '')"/></xsl:attribute>
+						<xsl:attribute name="id">    
+							<xsl:call-template name="string-replace-all">
+								<xsl:with-param name="text" select="@sfa:ID"/>
+								<xsl:with-param name="replace" select="'-'"/>
+								<xsl:with-param name="by" select="''"/>
+							</xsl:call-template>
+						</xsl:attribute>
 						<xsl:for-each select="key:notes/sf:text-storage/sf:text-body/sf:p">
 							<p><xsl:value-of select="text()"/></p>
 						</xsl:for-each>
@@ -79,3 +105,4 @@
 	</xsl:template>
 
 </xsl:stylesheet>
+
