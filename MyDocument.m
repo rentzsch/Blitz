@@ -106,6 +106,7 @@
         return NO;
     }
 #else
+    // Note: Could check typename here, but sometimes it comes back com.adobe.pdf
     self.pdfDocument = [[PDFDocument alloc] initWithURL:initWithURL];
     return self.pdfDocument ? YES : NO;
 #endif
@@ -166,10 +167,17 @@
     // Extract the notes from the Keynote file, converting to HTML. Duct tape and bailing wire.
     {
         NSURL *fileURL = [self fileURL];
+        NSString *filePath = [fileURL path];
+        
+        // If opening the .pdf file, open adjacent .key file instead
+        if ([[filePath pathExtension] isEqual:@"pdf"])
+        {
+            filePath = [[filePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"key"];
+        }
         
         NSString *xslPath = [[NSBundle mainBundle] pathForResource:@"presenter-notes" ofType:@"xsl"];
         NSString *command = [NSString stringWithFormat:@"/usr/bin/unzip -p '%s' index.apxl | xsltproc '%s' -",
-                             [[NSFileManager defaultManager] fileSystemRepresentationWithPath:[fileURL path]],
+                             [[NSFileManager defaultManager] fileSystemRepresentationWithPath:filePath],
                              [[NSFileManager defaultManager] fileSystemRepresentationWithPath:xslPath]];
         NSTask *task = [[[NSTask alloc] init] autorelease];
         
