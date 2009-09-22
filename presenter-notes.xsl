@@ -32,6 +32,7 @@
 					}
 		        </style>
 				<script type="text/javascript">
+					<![CDATA[
 					function displayNotesForSlide(visibleIndex) {
 						slideNotes = document.body.getElementsByClassName("slide")
 						for (slideIndex = 0; slideNotes[slideIndex]; slideIndex++) {
@@ -44,6 +45,7 @@
 						}
 						return slideNotes
 					}
+					]]>
 				</script>
 			</head>
 
