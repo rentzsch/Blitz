@@ -6,8 +6,8 @@
 
 @interface NSObject (UndocumentedQuickLookUI)
 - (id)_previewView; // -[QLPreviewPanelController _previewView]
-- (id)displayBundle; // -[QLDisplayBundle displayBundle];
-- (PDFDocument*)pdfDocument; // -[QLDisplayBundle pdfDocument]
+- (id)displayBundle; // -[QLPreviewView displayBundle];
+- (PDFDocument*)pdfDocument; // -[QLPDFDisplayBundle pdfDocument]
 @end
 
 @interface MyDocument ()
@@ -86,6 +86,18 @@
     
     id myQLDisplayBundle = [myQLPreviewView displayBundle];
     //NSLog(@"myQLDisplayBundle: %@", myQLDisplayBundle);
+    
+    if (![myQLDisplayBundle respondsToSelector:@selector(pdfDocument)]) {
+        // It's probably not actually a QLPDFDisplayBundle -- bail.
+        [timer_ invalidate];
+        NSRunCriticalAlertPanel(@"Couldn't Load Keynote PDF QuickLook Representation",
+                                @"Please ensure the iWork '09's iWork.qlgenerator is installed in /Library/QuickLook.",
+                                nil,
+                                nil,
+                                nil);
+        [self close];
+        return;
+    }
     
     PDFDocument *pdfDisplayBundlePDFDocument = [myQLDisplayBundle pdfDocument];
     
