@@ -39,8 +39,7 @@
 - (void)windowDidLoad;
 {
     [super windowDidLoad];
-    
-    self.pageIndex = 0; // set the first media style and load the results
+    [[_webView mainFrame] loadData:_htmlData MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:nil];
 }
 
 - (void)setDocument:(NSDocument *)document;
@@ -63,16 +62,17 @@
 #pragma mark -
 #pragma mark KVC
 
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)webFrame;
+{
+    // show the first set of speaker notes once we are fully loaded.
+    self.pageIndex = 0;
+}
+
 @synthesize pageIndex = _pageIndex;
 - (void)setPageIndex:(NSUInteger)pageIndex;
 {
     _pageIndex = pageIndex;
-    //NSLog(@"speaker pageIndex = %lu", pageIndex);
-    
-    // Horrifying but easy!
-    NSString *mediaStyle = [NSString stringWithFormat:@"mBGSlide%lu", _pageIndex];
-    [_webView setMediaStyle:mediaStyle];
-    [[_webView mainFrame] loadData:_htmlData MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:nil];
+    [[_webView windowScriptObject] evaluateWebScript:[NSString stringWithFormat:@"displayNotesForSlide(%lu);", pageIndex]];
 }
 
 #pragma mark -
