@@ -103,7 +103,7 @@
 }
 
 - (BOOL)readFromURL:(NSURL *)initWithURL ofType:(NSString *)typeName error:(NSError **)outError {
-    if ([typeName isEqualToString:@"PDFDocument"]) {
+    if ([[NSWorkspace sharedWorkspace] type:typeName conformsToType:@"com.adobe.pdf"]) {
         self.pdfDocument = [[PDFDocument alloc] initWithURL:initWithURL];
         return self.pdfDocument ? YES : NO;
     } else if ([typeName isEqualToString:@"KeynoteDocument"]) {
@@ -145,8 +145,9 @@
         [slides release];
     }
     
-    // Extract the notes from the Keynote file, converting to HTML. Duct tape and bailing wire.
-    {
+    // Extract the notes from the Keynote file, if possoble, and converting to HTML. Duct tape and bailing wire.
+    NSData *htmlData = nil;
+    if ([[self fileType] isEqualToString:@"KeynoteDocument"]) {
         NSURL *fileURL = [self fileURL];
         
         NSString *xslPath = [[NSBundle mainBundle] pathForResource:@"presenter-notes" ofType:@"xsl"];
@@ -164,12 +165,15 @@
         [task launch];
         
         [[pipe fileHandleForWriting] closeFile]; // have to close our copy of the writing endpoint or we won't get EOF when reading.
-        NSData *htmlData = [[pipe fileHandleForReading] readDataToEndOfFile];
+        htmlData = [[pipe fileHandleForReading] readDataToEndOfFile];
         
         [task waitUntilExit];
         
         //NSLog(@"html = %@", [[[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding] autorelease]);
-        
+    }
+
+    // Load up the speaker notes, UI. Won't have any actual _notes_ unless we are reading a Keynote file.
+    {
         SpeakerNotesWindowController *speakerNotes = [[SpeakerNotesWindowController alloc] initWithHTMLData:htmlData];
         [self addWindowController:speakerNotes];
         
