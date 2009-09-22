@@ -167,7 +167,8 @@
         }
         
         NSString *xslPath = [[NSBundle mainBundle] pathForResource:@"presenter-notes" ofType:@"xsl"];
-        NSString *command = [NSString stringWithFormat:@"/usr/bin/unzip -p '%s' index.apxl | xsltproc '%s' -",
+        // CDATA wrapping that xsltproc adds seems to mess up the Javascript, so remove it.
+        NSString *command = [NSString stringWithFormat:@"/usr/bin/unzip -p '%s' index.apxl | xsltproc '%s' - | sed -e 's/<!\\[CDATA\\[//' -e 's/]]>//'",
                              [[NSFileManager defaultManager] fileSystemRepresentationWithPath:filePath],
                              [[NSFileManager defaultManager] fileSystemRepresentationWithPath:xslPath]];
         NSTask *task = [[[NSTask alloc] init] autorelease];
