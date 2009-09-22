@@ -114,7 +114,7 @@
                                        userInfo:nil
                                         repeats:NO];
         
-        return self.pdfDocument ? YES : NO;
+        return YES;
     } else if ([typeName isEqualToString:@"KeynoteDocument"]) {
         [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:nil];
         // Poor man's window-hiding since we can't immediately orderOut the panel (crashes):
