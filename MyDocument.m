@@ -104,7 +104,16 @@
 
 - (BOOL)readFromURL:(NSURL *)initWithURL ofType:(NSString *)typeName error:(NSError **)outError {
     if ([[NSWorkspace sharedWorkspace] type:typeName conformsToType:@"com.adobe.pdf"]) {
-        self.pdfDocument = [[PDFDocument alloc] initWithURL:initWithURL];
+        if (!(self.pdfDocument = [[PDFDocument alloc] initWithURL:initWithURL]))
+            return NO;
+        
+        // Can't just -initPDFView here since the window controller's aren't loaded.  Keynote path gets away with it due to the timer, so...
+        [NSTimer scheduledTimerWithTimeInterval:1
+                                         target:self
+                                       selector:@selector(initPDFView)
+                                       userInfo:nil
+                                        repeats:NO];
+        
         return self.pdfDocument ? YES : NO;
     } else if ([typeName isEqualToString:@"KeynoteDocument"]) {
         [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:nil];
