@@ -106,11 +106,19 @@
 
 - (BOOL)readFromURL:(NSURL *)initWithURL ofType:(NSString *)typeName error:(NSError **)outError {
 #if MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_5
-    if ([typeName isEqualToString:@"PDFDocument"]) {
-        self.pdfDocument = [[PDFDocument alloc] initWithURL:initWithURL];
-        return self.pdfDocument ? YES : NO;
-    }
-    else if ([typeName isEqualToString:@"KeynoteDocument"]) {
+    if ([[NSWorkspace sharedWorkspace] type:typeName conformsToType:@"com.adobe.pdf"]) {
+        if (!(self.pdfDocument = [[PDFDocument alloc] initWithURL:initWithURL]))
+            return NO;
+        
+        // Can't just -initPDFView here since the window controller's aren't loaded.  Keynote path gets away with it due to the timer, so...
+        [NSTimer scheduledTimerWithTimeInterval:1
+                                         target:self
+                                       selector:@selector(initPDFView)
+                                       userInfo:nil
+                                        repeats:NO];
+        
+        return YES;
+    } else if ([typeName isEqualToString:@"KeynoteDocument"]) {
         [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:nil];
         // Poor man's window-hiding since we can't immediately orderOut the panel (crashes):
         [[QLPreviewPanel sharedPreviewPanel] setFrameTopLeftPoint:NSMakePoint(-5000, -5000)];
@@ -155,8 +163,9 @@
         [slides release];
     }
     
-    // Extract the notes from the Keynote file, converting to HTML. Duct tape and bailing wire.
-    {
+    // Extract the notes from the Keynote file, if possoble, and converting to HTML. Duct tape and bailing wire.
+    NSData *htmlData = nil;
+    if ([[self fileType] isEqualToString:@"KeynoteDocument"]) {
         NSURL *fileURL = [self fileURL];
         NSString *filePath = [fileURL path];
         
@@ -182,12 +191,15 @@
         [task launch];
         
         [[pipe fileHandleForWriting] closeFile]; // have to close our copy of the writing endpoint or we won't get EOF when reading.
-        NSData *htmlData = [[pipe fileHandleForReading] readDataToEndOfFile];
+        htmlData = [[pipe fileHandleForReading] readDataToEndOfFile];
         
         [task waitUntilExit];
         
         //NSLog(@"html = %@", [[[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding] autorelease]);
-        
+    }
+
+    // Load up the speaker notes, UI. Won't have any actual _notes_ unless we are reading a Keynote file.
+    {
         SpeakerNotesWindowController *speakerNotes = [[SpeakerNotesWindowController alloc] initWithHTMLData:htmlData];
         [self addWindowController:speakerNotes];
         
