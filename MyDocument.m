@@ -1,6 +1,8 @@
 #import "MyDocument.h"
-#import "BlitzPDFView.h"
+
+#import "SlidesWindowController.h"
 #import "SpeakerNotesWindowController.h"
+#import "BlitzPDFView.h"
 
 @interface NSObject (UndocumentedQuickLookUI)
 - (id)_previewView; // -[QLPreviewPanelController _previewView]
@@ -12,42 +14,61 @@
 @property (retain, nonatomic) PDFDocument *pdfDocument;
 @property (retain, nonatomic) NSTimer *timer;
 @property (nonatomic) BOOL isInFullScreenMode;
+@property(assign) NSUInteger secondsElapsed;
+@property(assign,readwrite) BOOL running;
 @end
 
 @implementation MyDocument
-@synthesize pdfView, pdfDocument, timer, isInFullScreenMode;
+@synthesize pdfDocument, timer, isInFullScreenMode, secondsElapsed, running;
 @synthesize pageIndex;
 
 - (void)toggleFullScreenMode {
-	if (self.isInFullScreenMode) {
-		[self.pdfView exitFullScreenModeWithOptions: nil];
-		self.isInFullScreenMode = NO;
-	}
-	else {
-        // TODO
-		//NSWindow *window = [[[self windowControllers] objectAtIndex:0] window];
-		//self.isInFullScreenMode = [self.pdfView enterFullScreenMode: window.screen withOptions: nil];
-	}
+    SlidesWindowController *slides = [self.windowControllers objectAtIndex:0];
+    SpeakerNotesWindowController *notes = [self.windowControllers objectAtIndex:1];
+
+    NSView *slidesView = slides.pdfView;
+    NSView *notesView = notes.window.contentView;
+
+    if (self.isInFullScreenMode) {
+        [slidesView exitFullScreenModeWithOptions:nil];
+        [notesView exitFullScreenModeWithOptions:nil];
+        self.isInFullScreenMode = NO;
+    } else {
+        // Notes are on the MacBook Pro main screen at 1920x1200, slides are on the projector at 1280x720.
+        // For now, assuming that we don't need to change display resolutions and that these will be the only two displays and that the main screen will be the one for the notes.
+        NSScreen *notesScreen = [NSScreen mainScreen];
+        NSScreen *slidesScreen = nil;
+        for (NSScreen *screen in [NSScreen screens]) {
+            if (screen != notesScreen) {
+                slidesScreen = screen;
+                break;
+            }
+        }
+
+        if (!notesScreen || !slidesScreen) {
+            NSInteger rc = NSRunAlertPanel(@"Missing a screen", @"Unable to find both a note and slide screen", @"Cancel", @"Run Slides", nil);
+            if (rc == NSAlertDefaultReturn)
+                return;
+            slidesScreen = [NSScreen mainScreen];
+            notesScreen = nil;
+        }
+        
+        if (notesScreen) {
+            NSLog(@"notes %@ on %@ %@", notes, notesScreen, NSStringFromRect([notesScreen frame]));
+            [notesView enterFullScreenMode:notesScreen withOptions:nil];
+        }
+        NSLog(@"slides %@ on %@ %@", slides, slidesScreen, NSStringFromRect([slidesScreen frame]));
+        [slidesView enterFullScreenMode:slidesScreen withOptions:nil];
+        
+        [NSCursor setHiddenUntilMouseMoves:YES];
+        
+        self.isInFullScreenMode = YES;
+    }
 }
 
 - (void)initPDFView {
-    [self.pdfView setDocument:self.pdfDocument];
-    
-    self.pdfView.secondsElapsed = 0;
-    self.timer = [[NSTimer scheduledTimerWithTimeInterval:1.0
-                                                   target:self
-                                                 selector:@selector(updateElapsedTimer:)
-                                                 userInfo:nil
-                                                  repeats:YES] retain];
     self.isInFullScreenMode = NO;
     [self toggleFullScreenMode];
-}
-
-- (void)windowControllerDidLoadNib:(NSWindowController*)controller_ {
-    [super windowControllerDidLoadNib:controller_];
-    if (self.pdfDocument) {
-        [self initPDFView];
-    }
 }
 
 - (BOOL)writeToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
@@ -69,7 +90,7 @@
     
     PDFDocument *pdfDisplayBundlePDFDocument = [myQLDisplayBundle pdfDocument];
     
-    [pdfDisplayBundlePDFDocument writeToFile:@"/tmp/key.pdf"];
+    //[pdfDisplayBundlePDFDocument writeToFile:@"/tmp/key.pdf"];
     
     //NSLog(@"pdfDisplayBundlePDFDocument: %@", pdfDisplayBundlePDFDocument);
     
@@ -113,56 +134,26 @@
 }
 
 - (void)updateElapsedTimer:(NSTimer*)timer_ {
-    if (self.pdfView.secondsElapsed != 0 && (self.pdfView.secondsElapsed % SECONDS_PER_SLIDE == 0)) {
-        if ([self.pdfView canGoToNextPage]) {
-            [self.pdfView goToNextPage:nil];
-            
-            // Triggers page change in associated speaker notes window controller
-            self.pageIndex = [[self.pdfView document] indexForPage:self.pdfView.currentPage];
-        }
-        else {
-            [self.pdfView atLastPage];
+    if (self.secondsElapsed != 0 && (self.secondsElapsed % SECONDS_PER_SLIDE == 0)) {
+        // Triggers page change in associated speaker notes window controller
+        self.pageIndex++;
+        if (self.pageIndex >= pdfDocument.pageCount) {
+            self.running = NO;
             [timer_ invalidate];
         }
     }
-    self.pdfView.secondsElapsed += 1;
-    [self.pdfView setNeedsDisplay:YES];
+    
+    self.secondsElapsed += 1;
 }
-
-//--
-
-#if MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_5
-- (BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel {
-    return YES;
-}
-
-- (void)beginPreviewPanelControl:(QLPreviewPanel *)panel {
-    previewPanel = [panel retain];
-    panel.delegate = self;
-    panel.dataSource = self;
-}
-
-- (void)endPreviewPanelControl:(QLPreviewPanel *)panel {
-    [previewPanel release];
-    previewPanel = nil;
-}
-
-- (NSInteger)numberOfPreviewItemsInPreviewPanel:(QLPreviewPanel*)panel {
-    return 1;
-}
-
-- (id <QLPreviewItem>)previewPanel:(QLPreviewPanel *)panel previewItemAtIndex:(NSInteger)index {
-    return [self fileURL];
-    //return [NSURL fileURLWithPath:@"/Users/wolf/code/github/Blitz/blitz-example.pdf"];//[selectedDownloads objectAtIndex:index];
-}
-#endif
-
-//--
 
 - (void)makeWindowControllers;
 {
-    [super makeWindowControllers];
-    
+    // Slides
+    {
+        SlidesWindowController *slides = [[SlidesWindowController alloc] initWithWindowNibName:@"Slides"];
+        [self addWindowController:slides];
+        [slides release];
+    }
     
     // Extract the notes from the Keynote file, converting to HTML. Duct tape and bailing wire.
     {
@@ -205,15 +196,22 @@
     }
 }
 
-- (NSString *)windowNibName {
-    return @"MyDocument";
-}
-
 - (void)dealloc {
     self.pdfDocument = nil;
     [self.timer invalidate];
     self.timer = nil;
     [super dealloc];
+}
+
+- (IBAction)start:(id)sender;
+{
+    self.running = YES;
+    self.secondsElapsed = 0.0;
+    self.timer = [[NSTimer scheduledTimerWithTimeInterval:1.0
+                                                   target:self
+                                                 selector:@selector(updateElapsedTimer:)
+                                                 userInfo:nil
+                                                  repeats:YES] retain];
 }
 
 @end

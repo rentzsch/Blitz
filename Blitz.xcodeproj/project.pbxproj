@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* MyDocument.xib */; };
+		1DDD582C0DA1D0D100B32029 /* Slides.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* Slides.xib */; };
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
 		345BF6AC10668503004BCEE3 /* SpeakerSlidesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 345BF6AB10668503004BCEE3 /* SpeakerSlidesView.m */; };
+		345BF8FE1066A324004BCEE3 /* SlidesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345BF8FD1066A324004BCEE3 /* SlidesWindowController.m */; };
+		3484EC60106722D500B1BC64 /* BlitzButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3484EC5F106722D500B1BC64 /* BlitzButtonCell.m */; };
 		34E6611E1065E938001B6FE9 /* presenter-notes.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 34E6611D1065E938001B6FE9 /* presenter-notes.xsl */; };
 		34E6612E1065EB97001B6FE9 /* SpeakerNotes.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E6612D1065EB97001B6FE9 /* SpeakerNotes.xib */; };
 		34E6614E1065EBAE001B6FE9 /* SpeakerNotesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E6614D1065EBAE001B6FE9 /* SpeakerNotesWindowController.m */; };
@@ -44,7 +46,7 @@
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FBA07B3F13500E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		1DDD58290DA1D0D100B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MyDocument.xib; sourceTree = "<group>"; };
+		1DDD58290DA1D0D100B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Slides.xib; sourceTree = "<group>"; };
 		1DDD582B0DA1D0D100B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDocument.m; sourceTree = "<group>"; };
 		2A37F4AEFDCFA73011CA2CEA /* MyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDocument.h; sourceTree = "<group>"; };
@@ -55,6 +57,10 @@
 		32DBCF750370BD2300C91783 /* Blitz_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blitz_Prefix.pch; sourceTree = "<group>"; };
 		345BF6AA10668503004BCEE3 /* SpeakerSlidesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerSlidesView.h; sourceTree = "<group>"; };
 		345BF6AB10668503004BCEE3 /* SpeakerSlidesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerSlidesView.m; sourceTree = "<group>"; };
+		345BF8FC1066A324004BCEE3 /* SlidesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlidesWindowController.h; sourceTree = "<group>"; };
+		345BF8FD1066A324004BCEE3 /* SlidesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidesWindowController.m; sourceTree = "<group>"; };
+		3484EC5E106722D500B1BC64 /* BlitzButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitzButtonCell.h; sourceTree = "<group>"; };
+		3484EC5F106722D500B1BC64 /* BlitzButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlitzButtonCell.m; sourceTree = "<group>"; };
 		34E6611D1065E938001B6FE9 /* presenter-notes.xsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "presenter-notes.xsl"; sourceTree = "<group>"; };
 		34E6612D1065EB97001B6FE9 /* SpeakerNotes.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpeakerNotes.xib; sourceTree = "<group>"; };
 		34E6614C1065EBAE001B6FE9 /* SpeakerNotesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerNotesWindowController.h; sourceTree = "<group>"; };
@@ -138,6 +144,10 @@
 				34E6614D1065EBAE001B6FE9 /* SpeakerNotesWindowController.m */,
 				345BF6AA10668503004BCEE3 /* SpeakerSlidesView.h */,
 				345BF6AB10668503004BCEE3 /* SpeakerSlidesView.m */,
+				345BF8FC1066A324004BCEE3 /* SlidesWindowController.h */,
+				345BF8FD1066A324004BCEE3 /* SlidesWindowController.m */,
+				3484EC5E106722D500B1BC64 /* BlitzButtonCell.h */,
+				3484EC5F106722D500B1BC64 /* BlitzButtonCell.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -160,7 +170,7 @@
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
-				1DDD58280DA1D0D100B32029 /* MyDocument.xib */,
+				1DDD58280DA1D0D100B32029 /* Slides.xib */,
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
 				34E6612D1065EB97001B6FE9 /* SpeakerNotes.xib */,
 			);
@@ -223,7 +233,7 @@
 			files = (
 				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
-				1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */,
+				1DDD582C0DA1D0D100B32029 /* Slides.xib in Resources */,
 				1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */,
 				79BFE55A0FF7ECDD000668B2 /* dsa_pub.pem in Resources */,
 				79BFE61A0FF81A2C000668B2 /* blitz.icns in Resources */,
@@ -262,6 +272,8 @@
 				376586FD1009A33F00B9BC9B /* MyApplication.m in Sources */,
 				34E6614E1065EBAE001B6FE9 /* SpeakerNotesWindowController.m in Sources */,
 				345BF6AC10668503004BCEE3 /* SpeakerSlidesView.m in Sources */,
+				345BF8FE1066A324004BCEE3 /* SlidesWindowController.m in Sources */,
+				3484EC60106722D500B1BC64 /* BlitzButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,12 +288,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		1DDD58280DA1D0D100B32029 /* MyDocument.xib */ = {
+		1DDD58280DA1D0D100B32029 /* Slides.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1DDD58290DA1D0D100B32029 /* English */,
 			);
-			name = MyDocument.xib;
+			name = Slides.xib;
 			sourceTree = "<group>";
 		};
 		1DDD582A0DA1D0D100B32029 /* MainMenu.xib */ = {
