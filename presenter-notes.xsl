@@ -30,6 +30,9 @@
 						position:absolute;
 						display:none;
 					}
+					p:first-child {
+						margin-top:0;
+					}
 		        </style>
 				<script type="text/javascript">
 					function displayNotesForSlide(visibleIndex) {
