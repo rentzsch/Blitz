@@ -165,16 +165,16 @@
     
     // Extract the notes from the Keynote file, if possoble, and converting to HTML. Duct tape and bailing wire.
     NSData *htmlData = nil;
-    if ([[self fileType] isEqualToString:@"KeynoteDocument"]) {
-        NSURL *fileURL = [self fileURL];
-        NSString *filePath = [fileURL path];
-        
-        // If opening the .pdf file, open adjacent .key file instead
-        if ([[filePath pathExtension] isEqual:@"pdf"])
-        {
-            filePath = [[filePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"key"];
-        }
-        
+    NSURL *fileURL = [self fileURL];
+    NSString *filePath = [fileURL path];
+    
+    // If opening the .pdf file, open adjacent .key file instead
+    if ([[filePath pathExtension] isEqual:@"pdf"])
+    {
+        filePath = [[filePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"key"];
+    }
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         NSString *xslPath = [[NSBundle mainBundle] pathForResource:@"presenter-notes" ofType:@"xsl"];
         // CDATA wrapping that xsltproc adds seems to mess up the Javascript, so remove it.
         NSString *command = [NSString stringWithFormat:@"/usr/bin/unzip -p '%s' index.apxl | xsltproc '%s' - | sed -e 's/<!\\[CDATA\\[//' -e 's/]]>//'",
