@@ -54,10 +54,10 @@
         }
         
         if (notesScreen) {
-            NSLog(@"notes %@ on %@ %@", notes, notesScreen, NSStringFromRect([notesScreen frame]));
+            //NSLog(@"notes %@ on %@ %@", notes, notesScreen, NSStringFromRect([notesScreen frame]));
             [notesView enterFullScreenMode:notesScreen withOptions:nil];
         }
-        NSLog(@"slides %@ on %@ %@", slides, slidesScreen, NSStringFromRect([slidesScreen frame]));
+        //NSLog(@"slides %@ on %@ %@", slides, slidesScreen, NSStringFromRect([slidesScreen frame]));
         [slidesView enterFullScreenMode:slidesScreen withOptions:nil];
         
         [NSCursor setHiddenUntilMouseMoves:YES];
@@ -105,7 +105,7 @@
     
     //NSLog(@"pdfDisplayBundlePDFDocument: %@", pdfDisplayBundlePDFDocument);
     
-    NSLog(@"pageCount: %d", [pdfDisplayBundlePDFDocument pageCount]);
+    //NSLog(@"pageCount: %d", [pdfDisplayBundlePDFDocument pageCount]);
     if ([pdfDisplayBundlePDFDocument pageCount] >= 20) {
         [timer_ invalidate];
         self.pdfDocument = pdfDisplayBundlePDFDocument;
