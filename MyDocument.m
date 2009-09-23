@@ -6,8 +6,8 @@
 
 @interface NSObject (UndocumentedQuickLookUI)
 - (id)_previewView; // -[QLPreviewPanelController _previewView]
-- (id)displayBundle; // -[QLDisplayBundle displayBundle];
-- (PDFDocument*)pdfDocument; // -[QLDisplayBundle pdfDocument]
+- (id)displayBundle; // -[QLPreviewView displayBundle];
+- (PDFDocument*)pdfDocument; // -[QLPDFDisplayBundle pdfDocument]
 @end
 
 @interface MyDocument ()
@@ -54,10 +54,10 @@
         }
         
         if (notesScreen) {
-            NSLog(@"notes %@ on %@ %@", notes, notesScreen, NSStringFromRect([notesScreen frame]));
+            //NSLog(@"notes %@ on %@ %@", notes, notesScreen, NSStringFromRect([notesScreen frame]));
             [notesView enterFullScreenMode:notesScreen withOptions:nil];
         }
-        NSLog(@"slides %@ on %@ %@", slides, slidesScreen, NSStringFromRect([slidesScreen frame]));
+        //NSLog(@"slides %@ on %@ %@", slides, slidesScreen, NSStringFromRect([slidesScreen frame]));
         [slidesView enterFullScreenMode:slidesScreen withOptions:nil];
         
         [NSCursor setHiddenUntilMouseMoves:YES];
@@ -88,13 +88,25 @@
     id myQLDisplayBundle = [myQLPreviewView displayBundle];
     //NSLog(@"myQLDisplayBundle: %@", myQLDisplayBundle);
     
+    if (![myQLDisplayBundle respondsToSelector:@selector(pdfDocument)]) {
+        // It's probably not actually a QLPDFDisplayBundle -- bail.
+        [timer_ invalidate];
+        NSRunCriticalAlertPanel(@"Couldn't Load Keynote PDF QuickLook Representation",
+                                @"Please ensure the iWork '09's iWork.qlgenerator is installed in /Library/QuickLook.",
+                                nil,
+                                nil,
+                                nil);
+        [self close];
+        return;
+    }
+    
     PDFDocument *pdfDisplayBundlePDFDocument = [myQLDisplayBundle pdfDocument];
     
     //[pdfDisplayBundlePDFDocument writeToFile:@"/tmp/key.pdf"];
     
     //NSLog(@"pdfDisplayBundlePDFDocument: %@", pdfDisplayBundlePDFDocument);
     
-    NSLog(@"pageCount: %d", [pdfDisplayBundlePDFDocument pageCount]);
+    //NSLog(@"pageCount: %d", [pdfDisplayBundlePDFDocument pageCount]);
     if ([pdfDisplayBundlePDFDocument pageCount] >= 20) {
         [timer_ invalidate];
         self.pdfDocument = pdfDisplayBundlePDFDocument;
