@@ -61,7 +61,52 @@
     [_pdfDocument release];
     [_currentSlideView release];
     [_nextSlideView release];
+    [counterView release];
     [super dealloc];
+}
+
+- (uint16_t) secondsElapsed {
+    return secondsElapsed;
+}
+
+- (void)setSecondsElapsed:(uint16_t)secs {
+    secondsElapsed = secs;
+    counterView.secondsElapsed = secs;
+    [counterView setNeedsDisplay:YES];
+}
+
+- (BOOL)running;
+{
+    return ([counterView superview] == self);
+}
+- (void)setRunning:(BOOL)running;
+{
+    BOOL wasRunning = (counterView != nil);
+    
+    if (running == wasRunning)
+        return;
+    
+    if (running) {
+        const CGFloat kSize = 80.0f;
+        const CGFloat kPadding = 20.0f;
+        
+        NSRect frame = NSMakeRect([self bounds].size.width / 2.0 - kPadding - kSize, kPadding, kSize, kSize);
+        counterView = [[CounterView alloc] initWithFrame:frame];
+        
+        [self addSubview: counterView];
+        [counterView setNeedsDisplay: YES];
+        
+        [self addSubview:counterView];
+    } else {
+        [[counterView animator] removeFromSuperview];
+        [counterView release];
+        counterView = nil;
+    }
+}
+
+- (IBAction)updateSecondsElapsed:(id)sender {
+    self.secondsElapsed = [sender intValue];
+    [self setNeedsDisplay:YES];
 }
 
 #pragma mark -

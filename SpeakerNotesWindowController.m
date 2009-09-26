@@ -52,10 +52,14 @@
         [self bind:@"pageIndex" toObject:document withKeyPath:@"pageIndex" options:nil];
         [_slidesView bind:@"pdfDocument" toObject:document withKeyPath:@"pdfDocument" options:nil];
         [_slidesView bind:@"pageIndex" toObject:document withKeyPath:@"pageIndex" options:nil];
+        [_slidesView bind:@"secondsElapsed" toObject:document withKeyPath:@"secondsElapsed" options:nil];
+        [_slidesView bind:@"running" toObject:document withKeyPath:@"running" options:nil];
     } else {
         [self unbind:@"pageIndex"];
         [_slidesView unbind:@"pdfDocument"];
         [_slidesView unbind:@"pageIndex"];
+        [_slidesView unbind:@"secondsElapsed"];
+        [_slidesView unbind:@"running"];
     }
 }
 

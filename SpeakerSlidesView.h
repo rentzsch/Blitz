@@ -8,12 +8,15 @@
 
 #import <AppKit/NSView.h>
 #import <Quartz/Quartz.h>
+#import "CounterView.h"
 
 @interface SpeakerSlidePDFView : PDFView
 @end
 
 @interface SpeakerSlidesView : NSView
 {
+	uint16_t secondsElapsed;
+	CounterView *counterView;
 @private
     SpeakerSlidePDFView *_currentSlideView, *_nextSlideView;
     PDFDocument *_pdfDocument;
@@ -25,5 +28,9 @@
 
 @property(retain) IBOutlet PDFView *currentSlideView;
 @property(retain) IBOutlet PDFView *nextSlideView;
+
+@property(assign) BOOL running;
+
+- (IBAction)updateSecondsElapsed:(id)sender;
 
 @end
