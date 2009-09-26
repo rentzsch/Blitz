@@ -1,5 +1,6 @@
 #import <Cocoa/Cocoa.h>
 #import <Quartz/Quartz.h>
+#import "CounterView.h"
 
 @class CounterView;
 
