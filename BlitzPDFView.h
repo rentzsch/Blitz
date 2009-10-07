@@ -6,7 +6,7 @@
 
 @interface BlitzPDFView : PDFView {
 	uint16_t secondsElapsed;
-	CounterView *counterView;
+	IBOutlet CounterView *counterView;
 }
 @property uint16_t secondsElapsed;
 @property(assign) NSUInteger pageIndex;

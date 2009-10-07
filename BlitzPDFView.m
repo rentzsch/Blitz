@@ -27,26 +27,17 @@
 }
 - (void)setRunning:(BOOL)running;
 {
-    BOOL wasRunning = (counterView != nil);
+    BOOL wasRunning = ![counterView isHidden];
     
     if (running == wasRunning)
         return;
     
     if (running) {
-        const CGFloat kSize = 80.0f;
-        const CGFloat kPadding = 20.0f;
-        
-        NSRect frame = NSMakeRect([self bounds].size.width - kPadding - kSize, kPadding, kSize, kSize);
-        counterView = [[CounterView alloc] initWithFrame:frame];
-        
-        [self addSubview: counterView];
+        [[counterView animator] setHidden:NO];
+
         [counterView setNeedsDisplay: YES];
-        
-        [self addSubview:counterView];
     } else {
-        [[counterView animator] removeFromSuperview];
-        [counterView release];
-        counterView = nil;
+        [[counterView animator] setHidden:YES];
     }
 }
 
