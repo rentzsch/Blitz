@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A99C7A6126965B300B0EAA5 /* CustomWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A99C7A5126965B300B0EAA5 /* CustomWindow.m */; };
+		0A99C7A9126965BC00B0EAA5 /* MyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A99C7A8126965BC00B0EAA5 /* MyAppDelegate.m */; };
+		0A99C7AE126965D000B0EAA5 /* CounterWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A99C7AD126965D000B0EAA5 /* CounterWindow.xib */; };
 		0A9E2D30106DB7D5004CA409 /* CounterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E2D2F106DB7D5004CA409 /* CounterView.m */; };
 		1DDD582C0DA1D0D100B32029 /* Slides.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* Slides.xib */; };
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
@@ -45,6 +48,11 @@
 
 /* Begin PBXFileReference section */
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0A99C7A4126965B300B0EAA5 /* CustomWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWindow.h; sourceTree = "<group>"; };
+		0A99C7A5126965B300B0EAA5 /* CustomWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWindow.m; sourceTree = "<group>"; };
+		0A99C7A7126965BC00B0EAA5 /* MyAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAppDelegate.h; sourceTree = "<group>"; };
+		0A99C7A8126965BC00B0EAA5 /* MyAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAppDelegate.m; sourceTree = "<group>"; };
+		0A99C7AD126965D000B0EAA5 /* CounterWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CounterWindow.xib; sourceTree = "<group>"; };
 		0A9E2D2E106DB7D5004CA409 /* CounterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CounterView.h; sourceTree = "<group>"; };
 		0A9E2D2F106DB7D5004CA409 /* CounterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CounterView.m; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -137,6 +145,10 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0A99C7A4126965B300B0EAA5 /* CustomWindow.h */,
+				0A99C7A5126965B300B0EAA5 /* CustomWindow.m */,
+				0A99C7A7126965BC00B0EAA5 /* MyAppDelegate.h */,
+				0A99C7A8126965BC00B0EAA5 /* MyAppDelegate.m */,
 				0A9E2D2E106DB7D5004CA409 /* CounterView.h */,
 				0A9E2D2F106DB7D5004CA409 /* CounterView.m */,
 				2A37F4AEFDCFA73011CA2CEA /* MyDocument.h */,
@@ -178,6 +190,7 @@
 				1DDD58280DA1D0D100B32029 /* Slides.xib */,
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
 				34E6612D1065EB97001B6FE9 /* SpeakerNotes.xib */,
+				0A99C7AD126965D000B0EAA5 /* CounterWindow.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -250,6 +263,7 @@
 				79BFE61A0FF81A2C000668B2 /* blitz.icns in Resources */,
 				34E6611E1065E938001B6FE9 /* presenter-notes.xsl in Resources */,
 				34E6612E1065EB97001B6FE9 /* SpeakerNotes.xib in Resources */,
+				0A99C7AE126965D000B0EAA5 /* CounterWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +299,8 @@
 				345BF8FE1066A324004BCEE3 /* SlidesWindowController.m in Sources */,
 				3484EC60106722D500B1BC64 /* BlitzButtonCell.m in Sources */,
 				0A9E2D30106DB7D5004CA409 /* CounterView.m in Sources */,
+				0A99C7A6126965B300B0EAA5 /* CustomWindow.m in Sources */,
+				0A99C7A9126965BC00B0EAA5 /* MyAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
