@@ -4,6 +4,24 @@
 @implementation CounterView
 @synthesize secondsElapsed;
 
+- (void) updateSecondsElapsed:(NSNotification*) note {
+    NSNumber* secondsElapsedValue = [[note userInfo] valueForKey:@"secondsElapsed"];
+    self.secondsElapsed = [secondsElapsedValue unsignedIntValue];
+    [self setNeedsDisplay:YES];
+}
+
+- (void) awakeFromNib {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateSecondsElapsed:)
+                                                 name:UpdateSecondsElapsed
+                                               object:nil];
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
+}
+
 //  Following function stolen from http://cocoa.karelia.com/Foundation_Categories/NSColor__Instantiat.m
 static NSColor* colorFromHexRGB( NSString *inColorString ) {
 	NSColor *result = nil;

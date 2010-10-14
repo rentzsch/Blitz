@@ -7,11 +7,27 @@
 //
 
 #import "MyAppDelegate.h"
-
+#import "CounterView.h"
 
 @implementation MyAppDelegate
 
 @synthesize windowControllers;
+@synthesize secondsElapsed;
+
+- (void) tick:(NSTimer*) timer {
+    self.secondsElapsed += 1;
+    if (self.secondsElapsed >= 5 * 60)
+        self.secondsElapsed = 0;
+
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithUnsignedInt:self.secondsElapsed],
+                              @"secondsElapsed",
+                              0, nil];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:UpdateSecondsElapsed
+                                                        object:self
+                                                      userInfo:userInfo];
+}
 
 - (IBAction)showFloatingCounters:(id)sender
 {
@@ -40,5 +56,12 @@
         
         [controller showWindow:self];
     }
+
+    [NSTimer scheduledTimerWithTimeInterval:1
+                                     target:self
+                                   selector:@selector(tick:)
+                                   userInfo:nil
+                                    repeats:YES];
+
 }
 @end

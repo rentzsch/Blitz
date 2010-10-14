@@ -11,9 +11,11 @@
 
 @interface MyAppDelegate : NSObject {
     NSMutableArray *windowControllers;
+    NSUInteger secondsElapsed;
 }
 
 @property (retain) NSMutableArray *windowControllers;
+@property (assign) NSUInteger secondsElapsed;
 
 - (IBAction)showFloatingCounters:(id)sender;
 
