@@ -71,13 +71,18 @@
  Custom windows that use the NSBorderlessWindowMask can't become key by default. Override this method so that controls in this window will be enabled.
  */
 - (BOOL)canBecomeKeyWindow {
-    return YES;
+    return NO;
+}
+
+- (BOOL)canBecomeMainWindow {
+    return NO;
 }
 
 /*
  Start tracking a potential drag operation here when the user first clicks the mouse, to establish the initial location.
  */
-- (void)mouseDown:(NSEvent *)theEvent {    
+- (void)mouseDown:(NSEvent *)theEvent {
+    [NSApp preventWindowOrdering];
     // Get the mouse location in window coordinates.
     self.initialLocation = [theEvent locationInWindow];
 }

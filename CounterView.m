@@ -139,4 +139,14 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
     }
 }
 
+// http://www.cocoadev.com/index.pl?PreventWindowOrdering
+- (BOOL)shouldDelayWindowOrderingForEvent:(NSEvent *)theEvent;
+{
+    return YES;
+}
+
+- (BOOL)acceptsFirstMouse:(NSEvent *)theEvent;
+{
+    return YES;
+}
 @end
