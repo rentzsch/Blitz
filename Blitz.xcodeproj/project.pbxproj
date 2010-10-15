@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A02C51D1269774D00CBE952 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A02C51C1269774D00CBE952 /* ScriptingBridge.framework */; };
+		0A02C5351269788900CBE952 /* Keynote.app in Sources */ = {isa = PBXBuildFile; fileRef = 0A02C5241269780400CBE952 /* Keynote.app */; };
 		0A99C7A6126965B300B0EAA5 /* CustomWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A99C7A5126965B300B0EAA5 /* CustomWindow.m */; };
 		0A99C7A9126965BC00B0EAA5 /* MyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A99C7A8126965BC00B0EAA5 /* MyAppDelegate.m */; };
 		0A99C7AE126965D000B0EAA5 /* CounterWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A99C7AD126965D000B0EAA5 /* CounterWindow.xib */; };
@@ -33,6 +35,20 @@
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		0A02C5231269778F00CBE952 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.app";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).h",
+			);
+			script = "sdef \"$INPUT_FILE_PATH\" | sdp -fh -o \"$DERIVED_FILES_DIR\" --basename \"$INPUT_FILE_BASE\" --bundleid `defaults read \"$INPUT_FILE_PATH/Contents/Info\" CFBundleIdentifier`";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		79BFE5580FF7E76D000668B2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -48,6 +64,8 @@
 
 /* Begin PBXFileReference section */
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0A02C51C1269774D00CBE952 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		0A02C5241269780400CBE952 /* Keynote.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Keynote.app; path = "/Applications/iWork '09/Keynote.app"; sourceTree = "<absolute>"; };
 		0A99C7A4126965B300B0EAA5 /* CustomWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWindow.h; sourceTree = "<group>"; };
 		0A99C7A5126965B300B0EAA5 /* CustomWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWindow.m; sourceTree = "<group>"; };
 		0A99C7A7126965BC00B0EAA5 /* MyAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAppDelegate.h; sourceTree = "<group>"; };
@@ -96,6 +114,7 @@
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				79BB56AC0FF7386500D94BEB /* Quartz.framework in Frameworks */,
 				79BFE53A0FF7E738000668B2 /* Sparkle.framework in Frameworks */,
+				0A02C51D1269774D00CBE952 /* ScriptingBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +152,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* C4BlitzPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				0A02C5241269780400CBE952 /* Keynote.app */,
 				2A37F4ABFDCFA73011CA2CEA /* Classes */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
@@ -200,6 +220,7 @@
 			children = (
 				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
+				0A02C51C1269774D00CBE952 /* ScriptingBridge.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -218,6 +239,7 @@
 				79BFE55F0FF806B6000668B2 /* ShellScript */,
 			);
 			buildRules = (
+				0A02C5231269778F00CBE952 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -290,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A02C5351269788900CBE952 /* Keynote.app in Sources */,
 				8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				79BB568B0FF7374A00D94BEB /* BlitzPDFView.m in Sources */,
