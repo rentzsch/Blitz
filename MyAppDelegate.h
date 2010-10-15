@@ -7,14 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "Keynote.h"
 
 @interface MyAppDelegate : NSObject {
     NSMutableArray *windowControllers;
     NSUInteger secondsElapsed;
+    KeynoteApplication *keynote;
 }
 
 @property (retain) NSMutableArray *windowControllers;
+@property (retain) KeynoteApplication *keynote;
 @property (assign) NSUInteger secondsElapsed;
 
 - (IBAction)showFloatingCounters:(id)sender;

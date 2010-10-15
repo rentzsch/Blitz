@@ -13,11 +13,15 @@
 
 @synthesize windowControllers;
 @synthesize secondsElapsed;
+@synthesize keynote;
+
+- (void) advanceSlide {
+    [[[keynote slideshows] objectAtIndex:0] advance];
+}
 
 - (void) tick:(NSTimer*) timer {
-    self.secondsElapsed += 1;
-    if (self.secondsElapsed >= 5 * 60)
-        self.secondsElapsed = 0;
+    if (self.secondsElapsed < 5 * 60)
+        self.secondsElapsed += 1;
 
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSNumber numberWithUnsignedInt:self.secondsElapsed],
@@ -27,10 +31,15 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:UpdateSecondsElapsed
                                                         object:self
                                                       userInfo:userInfo];
+
+    if ((self.secondsElapsed % SECONDS_PER_SLIDE == 0))
+        [self advanceSlide];
 }
 
 - (IBAction)showFloatingCounters:(id)sender
 {
+    self.keynote = [SBApplication applicationWithBundleIdentifier:@"com.apple.iWork.Keynote"];
+
     self.windowControllers = [NSMutableArray array];
     
     for (NSScreen *screen in [NSScreen screens])
