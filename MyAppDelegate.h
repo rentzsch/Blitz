@@ -13,11 +13,17 @@
     NSMutableArray *windowControllers;
     NSUInteger secondsElapsed;
     KeynoteApplication *keynote;
+    bool running;
+    NSTimer *timer;
 }
 
 @property (retain) NSMutableArray *windowControllers;
 @property (retain) KeynoteApplication *keynote;
 @property (assign) NSUInteger secondsElapsed;
+@property (assign) bool running;
+@property (retain) NSTimer *timer;
+
+- (IBAction)startStopReset:(id)sender;
 
 - (IBAction)showFloatingCounters:(id)sender;
 

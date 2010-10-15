@@ -14,6 +14,31 @@
 @synthesize windowControllers;
 @synthesize secondsElapsed;
 @synthesize keynote;
+@synthesize running;
+@synthesize timer;
+
+- (IBAction)startStopReset:(id)sender
+{
+    if (self.running)
+    {
+        [self.timer invalidate];
+        self.timer = nil;
+        self.running = false;
+    }
+    else if (secondsElapsed > 0)
+    {
+        self.secondsElapsed = 0;
+    }
+    else
+    {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                      target:self
+                                                    selector:@selector(tick:)
+                                                    userInfo:nil
+                                                     repeats:YES];
+        self.running = true;
+    }
+}
 
 - (void) advanceSlide {
     [[[keynote slideshows] objectAtIndex:0] advance];
@@ -21,19 +46,27 @@
 
 - (void) tick:(NSTimer*) timer {
     if (self.secondsElapsed < 5 * 60)
+    {
         self.secondsElapsed += 1;
 
-    NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithUnsignedInt:self.secondsElapsed],
-                              @"secondsElapsed",
-                              0, nil];
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSNumber numberWithUnsignedInt:self.secondsElapsed],
+                                  @"secondsElapsed",
+                                  0, nil];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:UpdateSecondsElapsed
-                                                        object:self
-                                                      userInfo:userInfo];
+        [[NSNotificationCenter defaultCenter] postNotificationName:UpdateSecondsElapsed
+                                                            object:self
+                                                          userInfo:userInfo];
 
-    if ((self.secondsElapsed % SECONDS_PER_SLIDE == 0))
-        [self advanceSlide];
+        if ((self.secondsElapsed % SECONDS_PER_SLIDE == 0))
+            [self advanceSlide];
+    }
+    else
+    {
+        // Can just stop the timer here.
+        [self startStopReset:self];
+    }
+
 }
 
 - (IBAction)showFloatingCounters:(id)sender
@@ -65,12 +98,5 @@
         
         [controller showWindow:self];
     }
-
-    [NSTimer scheduledTimerWithTimeInterval:1
-                                     target:self
-                                   selector:@selector(tick:)
-                                   userInfo:nil
-                                    repeats:YES];
-
 }
 @end
