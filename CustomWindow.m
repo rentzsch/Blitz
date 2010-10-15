@@ -51,6 +51,7 @@
 @implementation CustomWindow
 
 @synthesize initialLocation;
+@synthesize didDrag;
 
 /*
  In Interface Builder, the class for the window is set to this subclass. Overriding the initializer provides a mechanism for controlling how objects of this class are created.
@@ -108,6 +109,17 @@
     
     // Move the window to the new location
     [self setFrameOrigin:newOrigin];
+
+    self.didDrag = true;
+}
+
+- (void) mouseUp:(NSEvent *)theEvent
+{
+    if (!self.didDrag)
+    {
+        [NSApp sendAction:@selector(startStopReset:) to:nil from:self];
+    }
+    self.didDrag = false;
 }
 
 @end

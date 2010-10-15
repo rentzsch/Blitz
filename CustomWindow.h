@@ -50,8 +50,10 @@
 @interface CustomWindow : NSWindow {
     // This point is used in dragging to mark the initial click location
     NSPoint initialLocation;
+    bool didDrag;
 }
 
 @property (assign) NSPoint initialLocation;
+@property (assign) bool didDrag;
 
 @end
