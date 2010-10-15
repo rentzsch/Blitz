@@ -40,6 +40,20 @@
     }
 }
 
+- (void) setSecondsElapsed:(NSUInteger)elapsed
+{
+    secondsElapsed = elapsed;
+
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithUnsignedInt:self.secondsElapsed],
+                              @"secondsElapsed",
+                              0, nil];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:UpdateSecondsElapsed
+                                                        object:self
+                                                      userInfo:userInfo];
+}
+
 - (void) advanceSlide {
     [[[keynote slideshows] objectAtIndex:0] advance];
 }
@@ -48,15 +62,6 @@
     if (self.secondsElapsed < 5 * 60)
     {
         self.secondsElapsed += 1;
-
-        NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSNumber numberWithUnsignedInt:self.secondsElapsed],
-                                  @"secondsElapsed",
-                                  0, nil];
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:UpdateSecondsElapsed
-                                                            object:self
-                                                          userInfo:userInfo];
 
         if ((self.secondsElapsed % SECONDS_PER_SLIDE == 0))
             [self advanceSlide];
