@@ -31,6 +31,9 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
 #define sixOclock		270.0f
 
 - (void)drawRect:(NSRect)rect {
+    [[NSColor clearColor] set];
+    NSRectFill([self frame]);
+
     const CGFloat kOuterRingWidth = 8.0f;
     
     NSColor *outerSlideElapsedWedgeColor = colorFromHexRGB(@"2c8fff");
