@@ -18,7 +18,7 @@ Please [report bugs and request features](http://rentzsch.lighthouseapp.com/proj
 
 ## Version History
 
-* **Post-1.0** Sat 16 Oct 2010
+* **Post-1.0** Sat 16 Oct 2010 [download](http://github.com/downloads/kamitchell/Blitz/Blitz.app.zip)
 	* [NEW] **Floating Counters** in the Window menu will create one floating counter per screen. These counters send advance events to Keynote, and will float over it if **Allow Expose, Dashboard, and others to use screen** is checked in the Slideshow preferences. The counters are draggable for a choice of positioning. Start a slideshow in Keynote, then click the counter to start. Another click will stop the counter, and yet another will reset it to 0.
 
 * **1.0** Tue 22 Sep 2009 [download](http://cloud.github.com/downloads/rentzsch/Blitz/Blitz-1.0.zip)
