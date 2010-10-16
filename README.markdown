@@ -8,14 +8,20 @@ A simple presentation app that enforces a specific format:
 
 To use, drop a PDF or Keynote file (you'll need iWork '09 installed for Keynote support) onto its icon. Blitz assumes you'll have 20 slides at 1280x720.
 
+Or, load the slideshow (any format) into Keynote, put the presenter display on the laptop, and the slideshow display on the main screen. Start Blitz, and turn on **Floating Counters**. Adjust the position of the counters, then return to Keynote and set the slideshow to the first slide. When you're ready, click the floating counter on the presenter display, and the show starts!
+
+Blitz will send 19 advance events to Keynote; each is the same as tapping the space bar. Builds can be done with automatic buildout, as long as the whole slide is built within 15 seconds. Fewer than 20 slides can be used as long as the total number of advance events to get to the end is 19.
+
 Requires Mac OS X 10.6 (though [Kevin Mitchell has a 10.5-happy fork here](http://github.com/kamitchell/Blitz)).
 
 Please [report bugs and request features](http://rentzsch.lighthouseapp.com/projects/32860-blitz/tickets/new) on the [Lighthouse project site](http://rentzsch.lighthouseapp.com/projects/32860-blitz/tickets?q=all). Want to chip in? [Here's what needs to be done](http://rentzsch.lighthouseapp.com/projects/32860-blitz/tickets/bins/29884).
 
 ## Version History
 
-* **1.0** Tue 22 Sep 2009 [download](http://cloud.github.com/downloads/rentzsch/Blitz/Blitz-1.0.zip)
+* **Post-1.0** Sat 16 Oct 2010
+	* [NEW] **Floating Counters** in the Window menu will create one floating counter per screen. These counters send advance events to Keynote, and will float over it if **Allow Expose, Dashboard, and others to use screen** is checked in the Slideshow preferences. The counters are draggable for a choice of positioning. Start a slideshow in Keynote, then click the counter to start. Another click will stop the counter, and yet another will reset it to 0.
 
+* **1.0** Tue 22 Sep 2009 [download](http://cloud.github.com/downloads/rentzsch/Blitz/Blitz-1.0.zip)
 	* [NEW] Can now open .key files directly utilizing undocumented QuickLookUI.framework functionality. [ticket 9](http://rentzsch.lighthouseapp.com/projects/32860/tickets/9) ([rentzsch](http://github.com/rentzsch/Blitz/commit/6770af7608d76e7424d2c181d93b4951f7b8006a))
 
 	* [NEW] Support for extracting and displaying speaker notes from .key files. [ticket 9](http://rentzsch.lighthouseapp.com/projects/32860/tickets/9) (Tim Wood).
