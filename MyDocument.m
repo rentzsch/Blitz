@@ -36,7 +36,9 @@
     } else {
         // Notes are on the MacBook Pro main screen at 1920x1200, slides are on the projector at 1280x720.
         // For now, assuming that we don't need to change display resolutions and that these will be the only two displays and that the main screen will be the one for the notes.
-        NSScreen *notesScreen = [NSScreen mainScreen];
+        // Screen with menu bar is screen 0, not mainScreen
+        // See: http://stackoverflow.com/questions/1512761/making-a-full-screen-cocoa-app
+        NSScreen *notesScreen = [[NSScreen screens] objectAtIndex:0];
         NSScreen *slidesScreen = nil;
         for (NSScreen *screen in [NSScreen screens]) {
             if (screen != notesScreen) {
@@ -49,7 +51,7 @@
             NSInteger rc = NSRunAlertPanel(@"Missing a screen", @"Unable to find both a note and slide screen", @"Cancel", @"Run Slides", nil);
             if (rc == NSAlertDefaultReturn)
                 return;
-            slidesScreen = [NSScreen mainScreen];
+            slidesScreen = [[NSScreen screens] objectAtIndex:0];
             notesScreen = nil;
         }
         
