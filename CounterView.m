@@ -1,5 +1,5 @@
 #import "CounterView.h"
-
+#import "NSUserDefaults+ColorSupport.h"
 
 @implementation CounterView
 @synthesize secondsElapsed;
@@ -22,27 +22,6 @@
     [super dealloc];
 }
 
-//  Following function stolen from http://cocoa.karelia.com/Foundation_Categories/NSColor__Instantiat.m
-static NSColor* colorFromHexRGB( NSString *inColorString ) {
-	NSColor *result = nil;
-	unsigned int colorCode = 0;
-	unsigned char redByte, greenByte, blueByte;
-	
-	if (nil != inColorString) {
-		NSScanner *scanner = [NSScanner scannerWithString:inColorString];
-		(void) [scanner scanHexInt:&colorCode];	// ignore error
-	}
-	redByte		= (unsigned char) (colorCode >> 16);
-	greenByte	= (unsigned char) (colorCode >> 8);
-	blueByte	= (unsigned char) (colorCode);	// masks off high bits
-	result = [NSColor
-              colorWithCalibratedRed: (float)redByte	/ 0xff
-              green: (float)greenByte/ 0xff
-              blue:	(float)blueByte	/ 0xff
-              alpha: 1.0];
-	return result;
-}
-
 #define threeOclock		0.0f
 #define twelveOclock	90.0f
 #define nineOclock		180.0f
@@ -54,7 +33,7 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
 
     const CGFloat kOuterRingWidth = 8.0f;
     
-    NSColor *outerSlideElapsedWedgeColor = colorFromHexRGB(@"2c8fff");
+    NSColor *outerSlideElapsedWedgeColor = [[NSUserDefaults standardUserDefaults] colorForKey:kCounterViewRingForeground];
     
     NSRect bounds = [self bounds];
     NSPoint center = NSMakePoint(NSMidX(bounds), NSMidY(bounds));
@@ -70,7 +49,7 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
         [shadow setShadowOffset:NSMakeSize(2.0, -2.0)];
         [shadow set];
         
-        [colorFromHexRGB(@"32303d") set];
+        [[[NSUserDefaults standardUserDefaults] colorForKey:kCounterViewRingBackground] set];
         [outerSlideRingBackground fill];
         
         [[[[NSShadow alloc] init] autorelease] set];
@@ -107,7 +86,7 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
     {
         NSBezierPath *innerTalkCircleBackground = [NSBezierPath bezierPathWithOvalInRect:innerCircleBounds];
         
-        [[NSColor blackColor] set];
+        [[[NSUserDefaults standardUserDefaults] colorForKey:kCounterViewWedgeBackground] set];
         [innerTalkCircleBackground fill];
     }
     
@@ -123,7 +102,7 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
         [innerTalkElapsedWedge lineToPoint:center];
         [innerTalkElapsedWedge closePath];
         
-        [colorFromHexRGB(@"0046a8") set];
+        [[[NSUserDefaults standardUserDefaults] colorForKey:kCounterViewWedgeForeground] set];
         [innerTalkElapsedWedge fill];
     }
     
@@ -140,7 +119,7 @@ static NSColor* colorFromHexRGB( NSString *inColorString ) {
                                      [outerSlideElapsedWedgeColor colorWithAlphaComponent:0.02f], 0.80,
                                      [outerSlideElapsedWedgeColor colorWithAlphaComponent:0.01f], 1.00,
                                      nil] autorelease];
-        NSGradient *dotGradient = [[[NSGradient alloc] initWithStartingColor:colorFromHexRGB(@"ffffff")
+        NSGradient *dotGradient = [[[NSGradient alloc] initWithStartingColor:[NSColor whiteColor]
                                                                  endingColor:outerSlideElapsedWedgeColor] autorelease];
         
         [[NSGraphicsContext currentContext] saveGraphicsState]; {

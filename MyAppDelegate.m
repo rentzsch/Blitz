@@ -12,10 +12,45 @@
 @implementation MyAppDelegate
 
 @synthesize windowControllers;
+@synthesize preferencesWindowController;
 @synthesize secondsElapsed;
 @synthesize keynote;
 @synthesize running;
 @synthesize timer;
+
+//  Following function stolen from http://cocoa.karelia.com/Foundation_Categories/NSColor__Instantiat.m
+static NSData* colorDataFromHexRGB( NSString *inColorString ) {
+	NSColor *result = nil;
+	unsigned int colorCode = 0;
+	unsigned char redByte, greenByte, blueByte;
+
+	if (nil != inColorString) {
+		NSScanner *scanner = [NSScanner scannerWithString:inColorString];
+		(void) [scanner scanHexInt:&colorCode];	// ignore error
+	}
+	redByte		= (unsigned char) (colorCode >> 16);
+	greenByte	= (unsigned char) (colorCode >> 8);
+	blueByte	= (unsigned char) (colorCode);	// masks off high bits
+	result = [NSColor
+              colorWithCalibratedRed: (float)redByte	/ 0xff
+              green: (float)greenByte/ 0xff
+              blue:	(float)blueByte	/ 0xff
+              alpha: 1.0];
+	return [NSArchiver archivedDataWithRootObject:result];
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          colorDataFromHexRGB(@"2c8fff"), kCounterViewRingForeground,
+                          colorDataFromHexRGB(@"32303d"), kCounterViewRingBackground,
+                          colorDataFromHexRGB(@"0046ff"), kCounterViewWedgeForeground,
+                          colorDataFromHexRGB(@"000000"), kCounterViewWedgeBackground,
+                          nil];
+
+    [preferences registerDefaults:dict];
+}
 
 - (IBAction)startStopReset:(id)sender
 {
@@ -103,5 +138,13 @@
         
         [controller showWindow:self];
     }
+}
+
+- (IBAction)showPreferences:(id)sender
+{
+    if (self.preferencesWindowController == nil)
+        self.preferencesWindowController = [[NSWindowController alloc] initWithWindowNibName:@"Preferences"];
+
+    [self.preferencesWindowController showWindow:self];
 }
 @end

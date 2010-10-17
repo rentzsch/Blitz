@@ -13,6 +13,8 @@
 		0A99C7A9126965BC00B0EAA5 /* MyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A99C7A8126965BC00B0EAA5 /* MyAppDelegate.m */; };
 		0A99C7AE126965D000B0EAA5 /* CounterWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A99C7AD126965D000B0EAA5 /* CounterWindow.xib */; };
 		0A9E2D30106DB7D5004CA409 /* CounterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E2D2F106DB7D5004CA409 /* CounterView.m */; };
+		0AA66867126A96FA0009BD60 /* NSUserDefaults+ColorSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA66866126A96FA0009BD60 /* NSUserDefaults+ColorSupport.m */; };
+		0AB99A6E126A9C99000A4BF6 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB99A6D126A9C99000A4BF6 /* Preferences.xib */; };
 		1DDD582C0DA1D0D100B32029 /* Slides.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* Slides.xib */; };
 		1DDD582D0DA1D0D100B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD582A0DA1D0D100B32029 /* MainMenu.xib */; };
 		345BF6AC10668503004BCEE3 /* SpeakerSlidesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 345BF6AB10668503004BCEE3 /* SpeakerSlidesView.m */; };
@@ -73,6 +75,9 @@
 		0A99C7AD126965D000B0EAA5 /* CounterWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CounterWindow.xib; sourceTree = "<group>"; };
 		0A9E2D2E106DB7D5004CA409 /* CounterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CounterView.h; sourceTree = "<group>"; };
 		0A9E2D2F106DB7D5004CA409 /* CounterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CounterView.m; sourceTree = "<group>"; };
+		0AA66865126A96FA0009BD60 /* NSUserDefaults+ColorSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+ColorSupport.h"; sourceTree = "<group>"; };
+		0AA66866126A96FA0009BD60 /* NSUserDefaults+ColorSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+ColorSupport.m"; sourceTree = "<group>"; };
+		0AB99A6D126A9C99000A4BF6 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FBA07B3F13500E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58290DA1D0D100B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Slides.xib; sourceTree = "<group>"; };
@@ -165,6 +170,8 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0AA66865126A96FA0009BD60 /* NSUserDefaults+ColorSupport.h */,
+				0AA66866126A96FA0009BD60 /* NSUserDefaults+ColorSupport.m */,
 				0A99C7A4126965B300B0EAA5 /* CustomWindow.h */,
 				0A99C7A5126965B300B0EAA5 /* CustomWindow.m */,
 				0A99C7A7126965BC00B0EAA5 /* MyAppDelegate.h */,
@@ -211,6 +218,7 @@
 				1DDD582A0DA1D0D100B32029 /* MainMenu.xib */,
 				34E6612D1065EB97001B6FE9 /* SpeakerNotes.xib */,
 				0A99C7AD126965D000B0EAA5 /* CounterWindow.xib */,
+				0AB99A6D126A9C99000A4BF6 /* Preferences.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -286,6 +294,7 @@
 				34E6611E1065E938001B6FE9 /* presenter-notes.xsl in Resources */,
 				34E6612E1065EB97001B6FE9 /* SpeakerNotes.xib in Resources */,
 				0A99C7AE126965D000B0EAA5 /* CounterWindow.xib in Resources */,
+				0AB99A6E126A9C99000A4BF6 /* Preferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +333,7 @@
 				0A9E2D30106DB7D5004CA409 /* CounterView.m in Sources */,
 				0A99C7A6126965B300B0EAA5 /* CustomWindow.m in Sources */,
 				0A99C7A9126965BC00B0EAA5 /* MyAppDelegate.m in Sources */,
+				0AA66867126A96FA0009BD60 /* NSUserDefaults+ColorSupport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

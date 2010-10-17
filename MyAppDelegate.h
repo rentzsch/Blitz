@@ -11,6 +11,7 @@
 
 @interface MyAppDelegate : NSObject {
     NSMutableArray *windowControllers;
+    NSWindowController *preferencesWindowController;
     NSUInteger secondsElapsed;
     KeynoteApplication *keynote;
     bool running;
@@ -18,6 +19,7 @@
 }
 
 @property (retain) NSMutableArray *windowControllers;
+@property (retain) NSWindowController *preferencesWindowController;
 @property (retain) KeynoteApplication *keynote;
 @property (assign, setter=setSecondsElapsed:) NSUInteger secondsElapsed;
 @property (assign) bool running;
@@ -27,5 +29,6 @@
 - (void) setSecondsElapsed:(NSUInteger)elapsed;
 
 - (IBAction)showFloatingCounters:(id)sender;
+- (IBAction)showPreferences:(id)sender;
 
 @end
