@@ -3,6 +3,10 @@
 
 @implementation CounterView
 @synthesize secondsElapsed;
+@synthesize ringForeground;
+@synthesize ringBackground;
+@synthesize wedgeForeground;
+@synthesize wedgeBackground;
 
 - (void) updateSecondsElapsed:(NSNotification*) note {
     NSNumber* secondsElapsedValue = [[note userInfo] valueForKey:@"secondsElapsed"];
@@ -11,6 +15,50 @@
 }
 
 - (void) awakeFromNib {
+    NSUserDefaultsController *userDefaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+    NSDictionary *bindingOptions = [NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName
+                                                               forKey:NSValueTransformerNameBindingOption];
+
+    [self     bind:@"ringForeground"
+          toObject:userDefaultsController
+       withKeyPath:@"values.CounterViewRingForeground"
+           options:bindingOptions];
+
+    [userDefaultsController addObserver:self
+                             forKeyPath:@"values.CounterViewRingForeground"
+                                options:0
+                                context:nil];
+
+    [self     bind:@"ringBackground"
+          toObject:userDefaultsController
+       withKeyPath:@"values.CounterViewRingBackground"
+           options:bindingOptions];
+
+    [userDefaultsController addObserver:self
+                             forKeyPath:@"values.CounterViewRingBackground"
+                                options:0
+                                context:nil];
+
+    [self     bind:@"wedgeForeground"
+          toObject:userDefaultsController
+       withKeyPath:@"values.CounterViewWedgeForeground"
+           options:bindingOptions];
+
+    [userDefaultsController addObserver:self
+                             forKeyPath:@"values.CounterViewWedgeForeground"
+                                options:0
+                                context:nil];
+
+    [self     bind:@"wedgeBackground"
+          toObject:userDefaultsController
+       withKeyPath:@"values.CounterViewWedgeBackground"
+           options:bindingOptions];
+
+    [userDefaultsController addObserver:self
+                             forKeyPath:@"values.CounterViewWedgeBackground"
+                                options:0
+                                context:nil];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateSecondsElapsed:)
                                                  name:UpdateSecondsElapsed
@@ -18,6 +66,16 @@
 }
 
 - (void) dealloc {
+    NSUserDefaultsController *userDefaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+    [userDefaultsController removeObserver:self
+                                forKeyPath:@"values.CounterViewRingForeground"];
+    [userDefaultsController removeObserver:self
+                                forKeyPath:@"values.CounterViewRingBackground"];
+    [userDefaultsController removeObserver:self
+                                forKeyPath:@"values.CounterViewWedgeForeground"];
+    [userDefaultsController removeObserver:self
+                                forKeyPath:@"values.CounterViewWedgeBackground"];
+
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
@@ -33,7 +91,7 @@
 
     const CGFloat kOuterRingWidth = 8.0f;
     
-    NSColor *outerSlideElapsedWedgeColor = [[NSUserDefaults standardUserDefaults] colorForKey:kCounterViewRingForeground];
+    NSColor *outerSlideElapsedWedgeColor = [[ringForeground retain] autorelease];
     
     NSRect bounds = [self bounds];
     NSPoint center = NSMakePoint(NSMidX(bounds), NSMidY(bounds));
@@ -49,7 +107,7 @@
         [shadow setShadowOffset:NSMakeSize(2.0, -2.0)];
         [shadow set];
         
-        [[[NSUserDefaults standardUserDefaults] colorForKey:kCounterViewRingBackground] set];
+        [self.ringBackground set];
         [outerSlideRingBackground fill];
         
         [[[[NSShadow alloc] init] autorelease] set];
@@ -86,7 +144,7 @@
     {
         NSBezierPath *innerTalkCircleBackground = [NSBezierPath bezierPathWithOvalInRect:innerCircleBounds];
         
-        [[[NSUserDefaults standardUserDefaults] colorForKey:kCounterViewWedgeBackground] set];
+        [self.wedgeBackground set];
         [innerTalkCircleBackground fill];
     }
     
@@ -102,7 +160,7 @@
         [innerTalkElapsedWedge lineToPoint:center];
         [innerTalkElapsedWedge closePath];
         
-        [[[NSUserDefaults standardUserDefaults] colorForKey:kCounterViewWedgeForeground] set];
+        [wedgeForeground set];
         [innerTalkElapsedWedge fill];
     }
     
@@ -134,6 +192,11 @@
             [dotGradient drawInBezierPath:outerSlideElapsedDot relativeCenterPosition:NSZeroPoint];
         } [[NSGraphicsContext currentContext] restoreGraphicsState];
     }
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    [self setNeedsDisplay:YES];
 }
 
 // http://www.cocoadev.com/index.pl?PreventWindowOrdering
