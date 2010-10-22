@@ -147,4 +147,13 @@ static NSData* colorDataFromHexRGB( NSString *inColorString ) {
 
     [self.preferencesWindowController showWindow:self];
 }
+
+- (IBAction)resetPreferences:(id)sender
+{
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    [preferences removeObjectForKey:kCounterViewRingForeground];
+    [preferences removeObjectForKey:kCounterViewRingBackground];
+    [preferences removeObjectForKey:kCounterViewWedgeForeground];
+    [preferences removeObjectForKey:kCounterViewWedgeBackground];
+}
 @end
