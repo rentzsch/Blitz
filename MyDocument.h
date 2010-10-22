@@ -7,7 +7,7 @@
     @private BOOL isInFullScreenMode;
     
     
-    NSUInteger secondsElapsed;
+    NSTimeInterval secondsElapsed;
     NSUInteger pageIndex;
     BOOL running;
 }

@@ -5,10 +5,10 @@
 @class CounterView;
 
 @interface BlitzPDFView : PDFView {
-	uint16_t secondsElapsed;
+	NSTimeInterval secondsElapsed;
 	IBOutlet CounterView *counterView;
 }
-@property uint16_t secondsElapsed;
+@property NSTimeInterval secondsElapsed;
 @property(assign) NSUInteger pageIndex;
 @property(assign) BOOL running;
 

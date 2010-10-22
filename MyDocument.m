@@ -14,7 +14,7 @@
 @property (retain, nonatomic) PDFDocument *pdfDocument;
 @property (retain, nonatomic) NSTimer *timer;
 @property (nonatomic) BOOL isInFullScreenMode;
-@property(assign) NSUInteger secondsElapsed;
+@property(assign) NSTimeInterval secondsElapsed;
 @property(assign,readwrite) BOOL running;
 @end
 
@@ -156,7 +156,7 @@
 }
 
 - (void)updateElapsedTimer:(NSTimer*)timer_ {
-    if (self.secondsElapsed != 0 && (self.secondsElapsed % SECONDS_PER_SLIDE == 0)) {
+    if (self.secondsElapsed != 0 && ((int)floor(UPDATES_PER_SECOND * self.secondsElapsed) % (UPDATES_PER_SECOND * SECONDS_PER_SLIDE) == 0)) {
         // Triggers page change in associated speaker notes window controller
         self.pageIndex++;
         if (self.pageIndex >= pdfDocument.pageCount) {
@@ -165,7 +165,7 @@
         }
     }
     
-    self.secondsElapsed += 1;
+    self.secondsElapsed += 1.0 / UPDATES_PER_SECOND;
 }
 
 - (void)makeWindowControllers;
@@ -234,7 +234,7 @@
 {
     self.running = YES;
     self.secondsElapsed = 0.0;
-    self.timer = [[NSTimer scheduledTimerWithTimeInterval:1.0
+    self.timer = [[NSTimer scheduledTimerWithTimeInterval:1.0 / UPDATES_PER_SECOND
                                                    target:self
                                                  selector:@selector(updateElapsedTimer:)
                                                  userInfo:nil

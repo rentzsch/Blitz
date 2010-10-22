@@ -66,7 +66,7 @@ static NSData* colorDataFromHexRGB( NSString *inColorString ) {
     }
     else
     {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:(1.0 / UPDATES_PER_SECOND)
                                                       target:self
                                                     selector:@selector(tick:)
                                                     userInfo:nil
@@ -75,12 +75,12 @@ static NSData* colorDataFromHexRGB( NSString *inColorString ) {
     }
 }
 
-- (void) setSecondsElapsed:(NSUInteger)elapsed
+- (void) setSecondsElapsed:(NSTimeInterval)elapsed
 {
     secondsElapsed = elapsed;
 
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithUnsignedInt:self.secondsElapsed],
+                              [NSNumber numberWithDouble:self.secondsElapsed],
                               @"secondsElapsed",
                               0, nil];
 
@@ -96,9 +96,9 @@ static NSData* colorDataFromHexRGB( NSString *inColorString ) {
 - (void) tick:(NSTimer*) timer {
     if (self.secondsElapsed < 5 * 60)
     {
-        self.secondsElapsed += 1;
+        self.secondsElapsed += 1.0 / UPDATES_PER_SECOND;
 
-        if ((self.secondsElapsed % SECONDS_PER_SLIDE == 0))
+        if ((int)floor(UPDATES_PER_SECOND * self.secondsElapsed) % (UPDATES_PER_SECOND * SECONDS_PER_SLIDE) == 0)
             [self advanceSlide];
     }
     else

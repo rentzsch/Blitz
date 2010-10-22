@@ -12,7 +12,7 @@
 @interface MyAppDelegate : NSObject {
     NSMutableArray *windowControllers;
     NSWindowController *preferencesWindowController;
-    NSUInteger secondsElapsed;
+    NSTimeInterval secondsElapsed;
     KeynoteApplication *keynote;
     bool running;
     NSTimer *timer;
@@ -21,12 +21,12 @@
 @property (retain) NSMutableArray *windowControllers;
 @property (retain) NSWindowController *preferencesWindowController;
 @property (retain) KeynoteApplication *keynote;
-@property (assign, setter=setSecondsElapsed:) NSUInteger secondsElapsed;
+@property (assign, setter=setSecondsElapsed:) NSTimeInterval secondsElapsed;
 @property (assign) bool running;
 @property (retain) NSTimer *timer;
 
 - (IBAction)startStopReset:(id)sender;
-- (void) setSecondsElapsed:(NSUInteger)elapsed;
+- (void) setSecondsElapsed:(NSTimeInterval)elapsed;
 
 - (IBAction)showFloatingCounters:(id)sender;
 - (IBAction)showPreferences:(id)sender;

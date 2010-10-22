@@ -15,7 +15,7 @@
 
 @interface SpeakerSlidesView : NSView
 {
-	uint16_t secondsElapsed;
+	NSTimeInterval secondsElapsed;
 	CounterView *counterView;
 @private
     SpeakerSlidePDFView *_currentSlideView, *_nextSlideView;

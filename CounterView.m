@@ -10,7 +10,7 @@
 
 - (void) updateSecondsElapsed:(NSNotification*) note {
     NSNumber* secondsElapsedValue = [[note userInfo] valueForKey:@"secondsElapsed"];
-    self.secondsElapsed = [secondsElapsedValue unsignedIntValue];
+    self.secondsElapsed = [secondsElapsedValue doubleValue];
     [self setNeedsDisplay:YES];
 }
 

@@ -65,11 +65,11 @@
     [super dealloc];
 }
 
-- (uint16_t) secondsElapsed {
+- (NSTimeInterval) secondsElapsed {
     return secondsElapsed;
 }
 
-- (void)setSecondsElapsed:(uint16_t)secs {
+- (void)setSecondsElapsed:(NSTimeInterval)secs {
     secondsElapsed = secs;
     counterView.secondsElapsed = secs;
     [counterView setNeedsDisplay:YES];
@@ -105,7 +105,7 @@
 }
 
 - (IBAction)updateSecondsElapsed:(id)sender {
-    self.secondsElapsed = [sender intValue];
+    self.secondsElapsed = [sender doubleValue];
     [self setNeedsDisplay:YES];
 }
 
