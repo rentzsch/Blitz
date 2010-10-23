@@ -119,7 +119,7 @@
         [outerSlideElapsedWedge moveToPoint:center];
         
         float slideSeconds = fmod(self.secondsElapsed, SECONDS_PER_SLIDE);
-        if (slideSeconds == 0.0f) {
+        if (slideSeconds < 0.0001f) {
             if (self.secondsElapsed == 0) {
                 degreesElapsed = 0;
             } else {
