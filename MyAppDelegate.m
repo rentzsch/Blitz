@@ -94,7 +94,7 @@ static NSData* colorDataFromHexRGB( NSString *inColorString ) {
 }
 
 - (void) tick:(NSTimer*) timer {
-    if (self.secondsElapsed < 5 * 60)
+    if (self.secondsElapsed < NUMBER_OF_SLIDES * SECONDS_PER_SLIDE)
     {
         self.secondsElapsed += 1.0 / UPDATES_PER_SECOND;
 

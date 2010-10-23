@@ -152,7 +152,7 @@
         NSBezierPath *innerTalkElapsedWedge = [NSBezierPath bezierPath];
         [innerTalkElapsedWedge moveToPoint:center];
         
-        CGFloat degreesElapsed = ((CGFloat)self.secondsElapsed * 360.0f) / 300.0f;
+        CGFloat degreesElapsed = ((CGFloat)self.secondsElapsed * 360.0f) / (SECONDS_PER_SLIDE * NUMBER_OF_SLIDES);
         [innerTalkElapsedWedge appendBezierPathWithArcWithCenter:center
                                                           radius:innerCircleBounds.size.width / 2.0f
                                                       startAngle:twelveOclock-degreesElapsed

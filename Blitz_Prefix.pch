@@ -8,4 +8,5 @@
 
     #define SECONDS_PER_SLIDE (15)
     #define UPDATES_PER_SECOND (60)
+    #define NUMBER_OF_SLIDES (20)
 #endif
