@@ -98,7 +98,9 @@ static NSData* colorDataFromHexRGB( NSString *inColorString ) {
     {
         self.secondsElapsed += 1.0 / UPDATES_PER_SECOND;
 
-        if ((int)floor(UPDATES_PER_SECOND * self.secondsElapsed) % (UPDATES_PER_SECOND * SECONDS_PER_SLIDE) == 0)
+        bool justAboutDone = (self.secondsElapsed > ((NUMBER_OF_SLIDES * SECONDS_PER_SLIDE) - (1.0f / UPDATES_PER_SECOND / 2.0f)));
+        if ( !justAboutDone &&
+            ((int)floor(UPDATES_PER_SECOND * self.secondsElapsed) % (UPDATES_PER_SECOND * SECONDS_PER_SLIDE) == 0))
             [self advanceSlide];
     }
     else
