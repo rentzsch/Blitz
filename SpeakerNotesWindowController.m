@@ -76,7 +76,8 @@
 - (void)setPageIndex:(NSUInteger)pageIndex;
 {
     _pageIndex = pageIndex;
-    id ret = [[_webView windowScriptObject] evaluateWebScript:[NSString stringWithFormat:@"displayNotesForSlide(%lu);", pageIndex]];
+    // id ret =
+    [[_webView windowScriptObject] evaluateWebScript:[NSString stringWithFormat:@"displayNotesForSlide(%lu);", pageIndex]];
     //NSLog(@"evaluateWebScript returned %@", ret);
 }
 
