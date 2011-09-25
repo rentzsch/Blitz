@@ -110,7 +110,8 @@
         [self.ringBackground set];
         [outerSlideRingBackground fill];
         
-        [[[[NSShadow alloc] init] autorelease] set];
+        shadow = [[[NSShadow alloc] init] autorelease];
+        [shadow set];
     }
     
     CGFloat degreesElapsed;

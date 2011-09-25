@@ -25,8 +25,9 @@
 
 @property(retain) IBOutlet WebView *webView;
 @property(retain) IBOutlet SpeakerSlidesView *slidesView;
-@property(readwrite) NSUInteger pageIndex;
+@property(readwrite, setter=setPageIndex:) NSUInteger pageIndex;
 
 - (void)changeFont:(id)sender;
+- (void)setPageIndex:(NSUInteger)pageIndex;
 
 @end
